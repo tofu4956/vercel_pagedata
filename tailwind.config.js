@@ -1,5 +1,6 @@
 module.exports = {
   purge: ['./components/**/*.tsx', './pages/**/*.tsx'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -7,6 +8,7 @@ module.exports = {
         'accent-2': '#EAEAEA',
         'accent-7': '#333',
         success: '#0070f3',
+        darkgrey: '#222831',
         cyan: '#79FFE1',
       },
       spacing: {

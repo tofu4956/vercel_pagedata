@@ -7,10 +7,13 @@ import { getAllPosts } from '../lib/api'
 import Head from 'next/head'
 import { CMS_NAME } from '../lib/constants'
 import Post from '../types/post'
+import { useTheme } from 'next-themes';
 
 type Props = {
   allPosts: Post[]
 }
+
+
 
 const Index = ({ allPosts }: Props) => {
   const heroPost = allPosts[0]
