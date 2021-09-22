@@ -1,8 +1,8 @@
-import { Props, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from 'next-themes';
 
 
-function DarkModeToggle(){
+function DarkModeToggle(): JSX.Element {
 
 const { theme, setTheme } = useTheme();
 const [mounted, setMounted] = useState(false);

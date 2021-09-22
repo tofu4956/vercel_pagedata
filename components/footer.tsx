@@ -5,7 +5,7 @@ import { EXAMPLE_PATH } from '../lib/constants'
 import DarkModeToggle from './toggleDarkmode';
 
 // レンダー後かを判定
-const Footer = () => {
+const Footer = (): JSX.Element => {
   return (
     <footer className="bg-accent-1 dark:bg-gray-800 border-t border-accent-2">
       <Container>
