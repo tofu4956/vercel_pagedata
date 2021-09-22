@@ -1,0 +1,7 @@
+    "remark-html-katex": "^4.0.1",
+    "remark-math": "^5.1.0",
+    "remark-parse": "^9.0.0",
+    "remark-preset-lint-recommended": "^6.1.0",
+    "remark-rehype": "^9.0.0",
+    "remark-slug": "^7.0.0",
+    "remark-toc": "^8.0.0",
