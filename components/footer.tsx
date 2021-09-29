@@ -13,10 +13,7 @@ const Footer = (): JSX.Element => {
           <h3 className="text-s lg:text-s tracking-tighter leading-tight text-center lg:text-left mb-10 lg:mb-0 lg:pr-4 lg:w-1/2">
           &copy; 2021 tofu4956 Statically Generated with Next.js.
           </h3>
-          <div className="flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2">
-        </div>
-          <DarkModeToggle />
-        </div>
+          </div>
       </Container>
     </footer>
   )
