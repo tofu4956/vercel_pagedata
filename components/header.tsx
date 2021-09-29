@@ -8,7 +8,7 @@ const Header = (): JSX.Element => {
         <a className="hover:underline">Blog.</a>
       </Link>
       </h4>
-      <div className="justify-center grid grid-cols-2 items-center">
+      <div className="justify-center grid grid-cols-2 mb-14 md:mb-12 mt-4  items-center">
         <Link href="/about">
           <a className="text-l md:text-l font-bold">About</a>
         </Link>
