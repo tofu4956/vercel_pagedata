@@ -13,6 +13,7 @@ type Props = {
 const PostHeader = ({ title, coverImage, date}: Props) :JSX.Element=> {
   return (
     <>
+      <meta name="twitter:title" content={title}/>
       <PostTitle>{title}</PostTitle>
       <div className="mb-4 md:mb-8 sm:mx-0">
         <CoverImage title={title} src={coverImage} />
