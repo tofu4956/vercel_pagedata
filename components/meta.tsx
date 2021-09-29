@@ -37,7 +37,6 @@ const Meta = (): JSX.Element => {
         content={`A blog using Next.js but using template.`}
       />
       <meta name="twitter:card" content="summary"/>
-      <meta property="og:image" content={HOME_OG_IMAGE_URL} />
     </Head>
   )
 }
