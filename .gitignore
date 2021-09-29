@@ -33,3 +33,7 @@ yarn-error.log*
 .vercel
 
 .vscode
+
+#example data
+
+/_post/dynamic-routing.md

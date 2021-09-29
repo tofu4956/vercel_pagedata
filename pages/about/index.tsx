@@ -15,6 +15,9 @@ const About = (): JSX.Element => {
           <PostTitle>
             About
           </PostTitle>
+          <body>
+            not created
+          </body>
         </Container>
       </Layout>
     </>
