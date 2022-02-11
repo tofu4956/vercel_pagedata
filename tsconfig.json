@@ -27,5 +27,5 @@
     "**/*.ts",
     "**/*.tsx",
     "lib/markdownToHtml.ts"
-  ]
+, "components/remark-quote-parser.js"  ]
 }

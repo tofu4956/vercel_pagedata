@@ -15,6 +15,7 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
+  "include": "./**/*.ts",
   "rules": {
   }
 }
