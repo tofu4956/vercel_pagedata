@@ -11,7 +11,7 @@ type Props = {
 const CoverImage = ({ title, src, slug }: Props): JSX.Element => {
   console.log(src)
   const image = (
-    src === 'None' ?  '' : <img
+    src === 'None' ?  '' : <Image
       src={src}
       alt={`Cover Image for ${title}`}
       className={cn('shadow-small', {
