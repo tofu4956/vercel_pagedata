@@ -9,11 +9,11 @@
 }
 
 .markdown blockquote {
-  @apply bg-slate-100 ml-8;
+  @apply bg-gray-100 ml-8 rounded-md;
 }
 
 :global(.dark) .markdown blockquote {
-  @apply bg-slate-900
+  @apply bg-gray-800
 }
 
 .markdown blockquote p {
@@ -30,4 +30,8 @@
 
 .markdown a {
   @apply underline
+}
+
+.markdown code {
+  
 }
