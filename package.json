@@ -21,6 +21,7 @@
     "remark-emoji": "2.2.0",
     "remark-gfm": "^3.0.1",
     "remark-html": "13.0.2",
+    "remark-mdx": "^2.0.0",
     "remark-rehype": "^10.1.0",
     "remark-slug": "^7.0.1",
     "remark-toc": "^8.0.1",
