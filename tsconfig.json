@@ -17,7 +17,9 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "incremental": true
+    "incremental": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
   },
   "exclude": [
     "node_modules"
@@ -26,6 +28,5 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "lib/markdownToHtml.ts"
-, "components/remark-quote-parser.js"  ]
+    "lib/markdownToHtml.ts"  ]
 }
