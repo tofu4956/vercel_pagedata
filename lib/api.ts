@@ -19,6 +19,7 @@ export function getPostBySlug(slug: string, fields: string[] = []) {
   }
 
   const items: Items = {}
+  const meta: Items = {}
 
   // Ensure only the minimal needed data is exposed
   fields.forEach((field) => {
@@ -31,10 +32,11 @@ export function getPostBySlug(slug: string, fields: string[] = []) {
 
     if (data[field]) {
       items[field] = data[field]
+      meta[field] = data[field]
     }
   })
 
-  return items
+  return {items, meta}
 }
 
 export function getAllPosts(fields: string[] = []) {
@@ -42,6 +44,8 @@ export function getAllPosts(fields: string[] = []) {
   const posts = slugs
     .map((slug) => getPostBySlug(slug, fields))
     // sort posts by date in descending order
+  const postitems = posts
+    .map((post) => {return post.items})
     .sort((post1, post2) => (post1['date'] > post2['date'] ? -1 : 1))
-  return posts
+  return postitems
 }

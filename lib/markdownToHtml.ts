@@ -10,18 +10,22 @@ import remarkSlug from 'remark-slug'
 import rehypeStringify from 'rehype-stringify'
 import rehypeHighlight from 'rehype-highlight'
 import remarkMdx from 'remark-mdx'
+import { serialize } from 'next-mdx-remote/serialize'
+import PostType from '../types/post'
 const oenbed = require('remark-oembed'); 
 
-export default async function markdownToHtml(markdown: string) {
-  const result = await unified()
-  .use(remarkParse)
-  .use(remarkGfm)
-  .use(remarkSlug)
-  .use(remarkToc, { tight: true })
-  .use(remarkEmoji)
-  .use(remarkRehype, { allowDangerousHtml: true })
-  .use(rehypeHighlight)
-  .use(rehypeStringify, { allowDangerousHtml: true })
-  .process(markdown)
-  return result.toString()
+type Items = {
+  [key: string]: string
+}
+
+export default async function markdownToHtml(markdown: Items, data: any) {
+  const result = await serialize(markdown['content'], {
+    mdxOptions: {
+      remarkPlugins:[remarkMdx, remarkGfm, remarkSlug, [remarkToc, {tight: true}], remarkEmoji],
+      rehypePlugins: [rehypeHighlight],
+    },
+    scope: data
+  })
+
+  return result
 }

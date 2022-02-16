@@ -11,14 +11,17 @@ import Head from 'next/head'
 import { DOMAIN_NAME } from '../../lib/constants'
 import markdownToHtml from '../../lib/markdownToHtml'
 import PostType from '../../types/post'
+import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 type Props = {
   post: PostType
   morePosts: PostType[]
   preview?: boolean
+  MDXContent: MDXRemoteSerializeResult<Record<string, unknown>>
+  meta: string[]
 }
 
-const Post = ({ post, morePosts, preview }: Props) => {
+const Post = ({ post, morePosts, preview, MDXContent, meta }: Props) => {
   const router = useRouter()
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />
@@ -43,7 +46,7 @@ const Post = ({ post, morePosts, preview }: Props) => {
                 coverImage={post.coverImage}
                 date={post.date}
               />
-              <PostBody content={post.content} />
+              <PostBody content={MDXContent} />
             </article>
           </>
         )}
@@ -60,8 +63,12 @@ type Params = {
   }
 }
 
+type Items = {
+  [key: string]: string
+}
+
 export async function getStaticProps({ params }: Params) {
-  const post = getPostBySlug(params.slug, [
+  const markdown = getPostBySlug(params.slug, [
     'title',
     'date',
     'slug',
@@ -70,14 +77,17 @@ export async function getStaticProps({ params }: Params) {
     'ogImage',
     'coverImage',
   ])
-  const content = await markdownToHtml(post['content'] || '')
+  const post = markdown.items
+  const meta = markdown.meta
+  const content = await markdownToHtml(post, meta)
 
   return {
     props: {
       post: {
         ...post,
-        content,
+        meta
       },
+      MDXContent: content
     },
   }
 }
