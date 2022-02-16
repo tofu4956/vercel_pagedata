@@ -14,7 +14,6 @@ const oenbed = require('remark-oembed');
 
 export default async function markdownToHtml(markdown: string) {
   const result = await unified()
-  .use(remarkMdx)
   .use(remarkParse)
   .use(remarkGfm)
   .use(remarkSlug)
