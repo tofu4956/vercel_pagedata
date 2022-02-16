@@ -2,7 +2,7 @@
 title: 'test'
 excerpt: 'test'
 coverImage: 'None'
-date: '2022-02-16T20:00:34.000Z'
+date: '2022-02-16T20:00:34'
 ogImage:
   url: 'None'
 ---
