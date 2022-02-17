@@ -1,30 +1,30 @@
-import { useRouter } from 'next/router'
-import ErrorPage from 'next/error'
-import Container from '../../components/container'
-import PostBody from '../../components/post-body'
-import Header from '../../components/header'
-import PostHeader from '../../components/post-header'
-import Layout from '../../components/layout'
-import { getPostBySlug, getAllPosts } from '../../lib/api'
-import PostTitle from '../../components/post-title'
-import Head from 'next/head'
-import { DOMAIN_NAME } from '../../lib/constants'
-import markdownToHtml from '../../lib/markdownToHtml'
-import PostType from '../../types/post'
-import { MDXRemoteSerializeResult } from 'next-mdx-remote'
+import { useRouter } from "next/router";
+import ErrorPage from "next/error";
+import Container from "../../components/container";
+import PostBody from "../../components/post-body";
+import Header from "../../components/header";
+import PostHeader from "../../components/post-header";
+import Layout from "../../components/layout";
+import { getPostBySlug, getAllPosts } from "../../lib/api";
+import PostTitle from "../../components/post-title";
+import Head from "next/head";
+import { DOMAIN_NAME } from "../../lib/constants";
+import markdownToHtml from "../../lib/markdownToHtml";
+import PostType from "../../types/post";
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 type Props = {
-  post: PostType
-  morePosts: PostType[]
-  preview?: boolean
-  MDXContent: MDXRemoteSerializeResult<Record<string, unknown>>
-  meta: string[]
-}
+  post: PostType;
+  morePosts: PostType[];
+  preview?: boolean;
+  MDXContent: MDXRemoteSerializeResult<Record<string, unknown>>;
+  meta: string[];
+};
 
 const Post = ({ post, morePosts, preview, MDXContent, meta }: Props) => {
-  const router = useRouter()
+  const router = useRouter();
   if (!router.isFallback && !post?.slug) {
-    return <ErrorPage statusCode={404} />
+    return <ErrorPage statusCode={404} />;
   }
   return (
     <Layout preview={preview}>
@@ -52,57 +52,57 @@ const Post = ({ post, morePosts, preview, MDXContent, meta }: Props) => {
         )}
       </Container>
     </Layout>
-  )
-}
+  );
+};
 
-export default Post
+export default Post;
 
 type Params = {
   params: {
-    slug: string
-  }
-}
+    slug: string;
+  };
+};
 
 type Items = {
-  [key: string]: string
-}
+  [key: string]: string;
+};
 
 export async function getStaticProps({ params }: Params) {
   const markdown = getPostBySlug(params.slug, [
-    'title',
-    'date',
-    'slug',
-    'author',
-    'content',
-    'ogImage',
-    'coverImage',
-  ])
-  const post = markdown.items
-  const meta = markdown.meta
-  const content = await markdownToHtml(post, meta)
+    "title",
+    "date",
+    "slug",
+    "author",
+    "content",
+    "ogImage",
+    "coverImage",
+  ]);
+  const post = markdown.items;
+  const meta = markdown.meta;
+  const content = await markdownToHtml(post, meta);
 
   return {
     props: {
       post: {
         ...post,
-        meta
+        meta,
       },
-      MDXContent: content
+      MDXContent: content,
     },
-  }
+  };
 }
 
 export async function getStaticPaths() {
-  const posts = getAllPosts(['slug'])
+  const posts = getAllPosts(["slug"]);
 
   return {
     paths: posts.map((post) => {
       return {
         params: {
-          slug: post['slug'],
+          slug: post["slug"],
         },
-      }
+      };
     }),
     fallback: false,
-  }
+  };
 }

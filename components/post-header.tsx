@@ -1,19 +1,19 @@
-import Avatar from './avatar'
-import DateFormatter from './date-formatter'
-import CoverImage from './cover-image'
-import PostTitle from './post-title'
-import Author from '../types/author'
+import Avatar from "./avatar";
+import DateFormatter from "./date-formatter";
+import CoverImage from "./cover-image";
+import PostTitle from "./post-title";
+import Author from "../types/author";
 
 type Props = {
-  title: string
-  coverImage: string
-  date: string
-}
+  title: string;
+  coverImage: string;
+  date: string;
+};
 
-const PostHeader = ({ title, coverImage, date}: Props) :JSX.Element=> {
+const PostHeader = ({ title, coverImage, date }: Props): JSX.Element => {
   return (
     <>
-      <meta name="twitter:title" content={title}/>
+      <meta name="twitter:title" content={title} />
       <PostTitle>{title}</PostTitle>
       <div className="mb-4 md:mb-8 sm:mx-0">
         <CoverImage title={title} src={coverImage} />
@@ -24,7 +24,7 @@ const PostHeader = ({ title, coverImage, date}: Props) :JSX.Element=> {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default PostHeader
+export default PostHeader;

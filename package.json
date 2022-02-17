@@ -14,7 +14,7 @@
     "date-fns": "2.21.3",
     "gray-matter": "4.0.3",
     "highlight.js": "^11.4.0",
-    "next": "12",
+    "next": "^12",
     "next-mdx-remote": "^3.0.8",
     "next-themes": "^0.0.15",
     "react": "^17.0.2",
@@ -27,7 +27,6 @@
     "remark-gfm": "^3.0.1",
     "remark-html": "13.0.2",
     "remark-mdx": "^2.0.0",
-    "remark-oembed": "^1.2.2",
     "remark-rehype": "^10.1.0",
     "remark-slug": "^7.0.1",
     "remark-toc": "^8.0.1",
@@ -35,7 +34,6 @@
     "unist-util-visit": "^4.1.0"
   },
   "devDependencies": {
-    "@mapbox/rehype-prism": "^0.8.0",
     "@types/jest": "^26.0.23",
     "@types/node": "^15.6.0",
     "@types/react": "^17.0.6",
@@ -47,6 +45,7 @@
     "eslint-config-next": "11.1.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "postcss": "^8.3.0",
+    "prettier": "^2.5.1",
     "tailwindcss": "^3.0.22"
   },
   "license": "MIT"

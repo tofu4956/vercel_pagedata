@@ -1,12 +1,14 @@
-import { parseISO, format } from 'date-fns'
+import { parseISO, format } from "date-fns";
 
 type Props = {
-  dateString: string
-}
+  dateString: string;
+};
 
 const DateFormatter = ({ dateString }: Props): JSX.Element => {
-  const date = parseISO(dateString)
-  return <time dateTime={dateString}>{format(date, 'yyyy/LL/dd kk:mm:ss')}</time>
-}
+  const date = parseISO(dateString);
+  return (
+    <time dateTime={dateString}>{format(date, "yyyy/LL/dd kk:mm:ss")}</time>
+  );
+};
 
-export default DateFormatter
+export default DateFormatter;

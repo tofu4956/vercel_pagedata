@@ -1,7 +1,7 @@
-import { CMS_NAME } from '../lib/constants'
-import Link from 'next/link'
-import DarkModeToggle from './toggleDarkmode'
-import PostTitle from './post-title'
+import { CMS_NAME } from "../lib/constants";
+import Link from "next/link";
+import DarkModeToggle from "./toggleDarkmode";
+import PostTitle from "./post-title";
 
 const Intro = (): JSX.Element => {
   return (
@@ -10,13 +10,13 @@ const Intro = (): JSX.Element => {
         Blog.
       </h1>
       <div className="justify-center grid grid-cols-2 items-center">
-            <Link href="/about">
-              <a className="text-l md:text-l font-bold">About</a>
-            </Link>
-            <DarkModeToggle />
+        <Link href="/about">
+          <a className="text-l md:text-l font-bold">About</a>
+        </Link>
+        <DarkModeToggle />
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Intro
+export default Intro;
