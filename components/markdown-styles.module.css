@@ -29,9 +29,9 @@
 }
 
 .markdown a {
-  @apply underline
+  @apply underline;
 }
 
-.markdown code {
-  
+.markdown pre > code {
+  @apply rounded-md text-base;
 }

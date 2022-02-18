@@ -11,7 +11,7 @@ type Props = {
 const MDXcomponents = {
   Link: (
     props: JSX.IntrinsicAttributes & LinkProps & { children?: ReactNode }
-  ) => <Link {...props} />,
+  ) => <Link {...props} />
 };
 
 const PostBody = ({ content }: Props): JSX.Element => {

@@ -28,6 +28,7 @@ module.exports = {
       },
       fontFamily: {
         'post': ['"M PLUS 1"'],
+        'code': ['monospace']
       },
       boxShadow: {
         small: '0 5px 10px rgba(0, 0, 0, 0.12)',
