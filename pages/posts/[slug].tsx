@@ -12,6 +12,7 @@ import { DOMAIN_NAME } from "../../lib/constants";
 import markdownToHtml from "../../lib/markdownToHtml";
 import PostType from "../../types/post";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import PostShareFooter from "../../components/post-sharefooter";
 
 type Props = {
   post: PostType;
@@ -33,8 +34,8 @@ const Post = ({ post, morePosts, preview, MDXContent, meta }: Props) => {
         {router.isFallback ? (
           <PostTitle>Loading…</PostTitle>
         ) : (
-          <>
-            <article className="mb-32">
+          <div className="mb-24">
+            <article className="mb-8">
               <Head>
                 <title>
                   {post.title} | {DOMAIN_NAME}
@@ -48,7 +49,8 @@ const Post = ({ post, morePosts, preview, MDXContent, meta }: Props) => {
               />
               <PostBody content={MDXContent} />
             </article>
-          </>
+            <PostShareFooter title={post.title}/>
+          </div>
         )}
       </Container>
     </Layout>
