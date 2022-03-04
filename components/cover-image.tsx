@@ -9,7 +9,6 @@ type Props = {
 };
 
 const CoverImage = ({ title, src, slug }: Props): JSX.Element => {
-  console.log(src);
   const image =
     src === "None" ? (
       ""
