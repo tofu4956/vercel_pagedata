@@ -3,13 +3,14 @@ import Container from "../../components/container";
 import { DOMAIN_NAME } from "../../lib/constants";
 import Header from "../../components/header";
 import PostTitle from "../../components/post-title";
+import Head from "next/head";
 const About = (): JSX.Element => {
   return (
     <>
       <Layout>
-        <head>
+        <Head>
           <title>About | {DOMAIN_NAME}</title>
-        </head>
+        </Head>
         <Container>
           <Header />
           <PostTitle>About</PostTitle>

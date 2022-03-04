@@ -16,7 +16,7 @@ const MDXcomponents = {
 
 const PostBody = ({ content }: Props): JSX.Element => {
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-3xl mx-auto">
       <div className={markdownStyles["markdown"]}>
         <MDXRemote {...content} components={MDXcomponents} />
       </div>
