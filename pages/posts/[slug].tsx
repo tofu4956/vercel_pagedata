@@ -49,7 +49,7 @@ const Post = ({ post, morePosts, preview, MDXContent, meta }: Props) => {
               />
               <PostBody content={MDXContent} />
             </article>
-            <PostShareFooter title={post.title}/>
+            <PostShareFooter title={post.title} />
           </div>
         )}
       </Container>

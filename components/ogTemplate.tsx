@@ -1,14 +1,22 @@
 export interface Props {
-  title: string
+  title: string;
 }
 
-const OgTemplate = (props: Props) => {
+export const OgTemplate = (props: Props) => {
   const css = `
-  `
+.title {
+  
+}
+
+  `;
 
   return (
     <html>
-      <style dangerouslySetInnerHTML={{__html: css}}/>
+      <style dangerouslySetInnerHTML={{ __html: css }} />
+      <body>
+        <h1>{props.title}</h1>
+        <p>blog tofu4956</p>
+      </body>
     </html>
-  )
-}
+  );
+};

@@ -10,7 +10,7 @@ type Props = {
 
 const CoverImage = ({ title, src, slug }: Props): JSX.Element => {
   const image =
-    src === "None" ? (
+    src === ("None" || "none") ? (
       ""
     ) : (
       <Image
@@ -30,6 +30,9 @@ const CoverImage = ({ title, src, slug }: Props): JSX.Element => {
       ) : (
         image
       )}
+      <a>
+        
+      </a>
     </div>
   );
 };
