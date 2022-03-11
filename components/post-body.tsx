@@ -2,6 +2,7 @@ import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import Link, { LinkProps } from "next/link";
 import { ReactNode } from "react";
 import markdownStyles from "./markdown-styles.module.css";
+import 'katex/dist/katex.min.css';
 
 type Props = {
   content: MDXRemoteSerializeResult<Record<string, unknown>>;
