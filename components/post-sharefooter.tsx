@@ -24,10 +24,13 @@ const ClickOtherShareHandler = ({ title, urlParams }: Handler) => {
   }
 };
 
-const ClickLinkCopyHandler = ({urlParams}: {urlParams: string | string[] | undefined}) => {
-  if(typeof urlParams === 'string')
-    navigator.clipboard.writeText(urlParams);
-}
+const ClickLinkCopyHandler = ({
+  urlParams,
+}: {
+  urlParams: string | string[] | undefined;
+}) => {
+  if (typeof urlParams === "string") navigator.clipboard.writeText(urlParams);
+};
 
 const PostShareFooter = ({ title }: Props): JSX.Element => {
   const router = useRouter();
@@ -46,7 +49,7 @@ const PostShareFooter = ({ title }: Props): JSX.Element => {
       >
         <FaGetPocket size={icon_size} />
       </a>
-      <button onClick={() => ClickLinkCopyHandler({urlParams})}>
+      <button onClick={() => ClickLinkCopyHandler({ urlParams })}>
         <FaLink size={icon_size} />
       </button>
       <button
