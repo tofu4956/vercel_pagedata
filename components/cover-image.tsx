@@ -30,9 +30,7 @@ const CoverImage = ({ title, src, slug }: Props): JSX.Element => {
       ) : (
         image
       )}
-      <a>
-        
-      </a>
+      <a></a>
     </div>
   );
 };

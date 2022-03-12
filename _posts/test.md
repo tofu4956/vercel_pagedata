@@ -13,7 +13,6 @@ export const year = 2021
 
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
-!(https://www.youtube.com/watch?v=8TQIvdFl4aU)
 
 a <br/> c {2*4}, d
 
@@ -22,7 +21,7 @@ a <br/> c {2*4}, d
 ```js
   var foo = "bar", baz = 5;
 ```
-aaa<br/>https://www.youtube.com/watch?v=km1-3qGN6qA
+aaa<br/>
 
 
 # Hello, *world*!
@@ -30,7 +29,7 @@ aaa<br/>https://www.youtube.com/watch?v=km1-3qGN6qA
 Below is an example of JSX embedded in Markdown. <br /> **Try and change
 the background color!**
 
-
+<YouTube width="640" height="480" id="3h5OzkRWGas"/>
 
 <Link href='/about'>
   <a>a</a>

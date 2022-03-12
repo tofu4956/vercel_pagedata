@@ -20,6 +20,7 @@ const Article = ({ posts }: Props): JSX.Element => {
             date={post.date}
             slug={post.slug}
             excerpt={post.excerpt}
+            category={post.category}
           />
         ))}
       </div>

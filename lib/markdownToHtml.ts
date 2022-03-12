@@ -8,23 +8,27 @@ import { serialize } from "next-mdx-remote/serialize";
 import rehypeKatex from "rehype-katex";
 
 type Items = {
-  [key: string]: string;
+  [key: string]: string | string[] | boolean;
 };
 
 export default async function markdownToHtml(markdown: Items, data: any) {
-  const result = await serialize(markdown["content"], {
-    mdxOptions: {
-      remarkPlugins: [
-        remarkMdx,
-        remarkGfm,
-        remarkSlug,
-        [remarkToc, { tight: true }],
-        remarkEmoji,
-      ],
-      rehypePlugins: [rehypeHighlight, rehypeKatex],
-    },
-    scope: data,
-  });
-
-  return result;
+  let contents: string;
+  if (typeof markdown["content"] === "string") {
+    contents = markdown["content"];
+    const result = await serialize(contents, {
+      mdxOptions: {
+        remarkPlugins: [
+          remarkMdx,
+          remarkGfm,
+          remarkSlug,
+          [remarkToc, { tight: true }],
+          remarkEmoji,
+        ],
+        rehypePlugins: [rehypeHighlight, rehypeKatex],
+      },
+      scope: data,
+    });
+    return result;
+  }
+  return;
 }

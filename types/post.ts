@@ -5,12 +5,14 @@ type PostType = {
   title: string;
   date: string;
   coverImage: string;
-  author: Author;
   excerpt: string;
   ogImage: {
     url: string;
   };
   content: string;
+  category: string;
+  tags: string[];
+  private: boolean;
 };
 
 export default PostType;

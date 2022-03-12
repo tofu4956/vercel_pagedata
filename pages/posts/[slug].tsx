@@ -46,6 +46,7 @@ const Post = ({ post, morePosts, preview, MDXContent, meta }: Props) => {
                 title={post.title}
                 coverImage={post.coverImage}
                 date={post.date}
+                category={post.category}
               />
               <PostBody content={MDXContent} />
             </article>
@@ -66,7 +67,7 @@ type Params = {
 };
 
 type Items = {
-  [key: string]: string;
+  [key: string]: string | string[] | boolean;
 };
 
 export async function getStaticProps({ params }: Params) {
@@ -74,10 +75,12 @@ export async function getStaticProps({ params }: Params) {
     "title",
     "date",
     "slug",
-    "author",
     "content",
     "ogImage",
     "coverImage",
+    "category",
+    "tags",
+    "private",
   ]);
   const post = markdown.items;
   const meta = markdown.meta;

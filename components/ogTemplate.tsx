@@ -4,10 +4,9 @@ export interface Props {
 
 export const OgTemplate = (props: Props) => {
   const css = `
-.title {
-  
+body {
+  margin: 20px;
 }
-
   `;
 
   return (

@@ -4,7 +4,7 @@ import { OgTemplate } from "../../../components/ogTemplate";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createElement } from "react";
 import ReactDOMServer from "react-dom/server";
-import { useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 type Params = {
   params: {

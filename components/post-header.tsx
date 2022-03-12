@@ -8,9 +8,15 @@ type Props = {
   title: string;
   coverImage: string;
   date: string;
+  category: string;
 };
 
-const PostHeader = ({ title, coverImage, date }: Props): JSX.Element => {
+const PostHeader = ({
+  title,
+  coverImage,
+  date,
+  category,
+}: Props): JSX.Element => {
   return (
     <>
       <meta name="twitter:title" content={title} />
@@ -21,6 +27,7 @@ const PostHeader = ({ title, coverImage, date }: Props): JSX.Element => {
       <div className="max-w-3xl mx-auto">
         <div className="mb-6 text-l italic">
           <DateFormatter dateString={date} />
+          <p> - Category: {category}</p>
         </div>
       </div>
     </>
