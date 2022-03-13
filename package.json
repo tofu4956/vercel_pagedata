@@ -26,6 +26,7 @@
     "redis": "^4.0.3",
     "rehype-highlight": "^5.0.2",
     "rehype-katex": "^6.0.1",
+    "rehype-react": "^7.0.4",
     "rehype-stringify": "^9.0.2",
     "remark": "^14.0.2",
     "remark-emoji": "2.2.0",

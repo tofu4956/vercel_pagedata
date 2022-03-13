@@ -1,13 +1,17 @@
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import Link, { LinkProps } from "next/link";
-import { ReactNode } from "react";
+import { Fragment, ReactNode, useEffect, useState } from "react";
 import { YouTube } from "./post/youtube";
 import markdownStyles from "./markdown-styles.module.css";
-import "katex/dist/katex.min.css";
 import { CodePen } from "./post/codepen";
+import * as runtime from 'react/jsx-runtime';
+import {run, runSync} from "@mdx-js/mdx"
+import React from "react"
+import { MDXProvider } from "@mdx-js/react";
+import type {MDXModule, MDXComponents} from 'mdx/types'
 
 type Props = {
-  content: MDXRemoteSerializeResult<Record<string, unknown>>;
+  content: string;
 };
 
 type YouTubeProps = {
@@ -31,10 +35,39 @@ const MDXcomponents = {
 };
 
 const PostBody = ({ content }: Props): JSX.Element => {
+  const [mdxModule, setMdxModule] = useState<MDXModule>(runSync(`/*@jsxRuntime automatic @jsxImportSource react*/
+  const {jsx: _jsx} = arguments[0];
+  function MDXContent(props = {}) {
+    const {wrapper: MDXLayout} = props.components || ({});
+    return MDXLayout ? _jsx(MDXLayout, Object.assign({}, props, {
+      children: _jsx(_createMdxContent, {})
+    })) : _createMdxContent();
+    function _createMdxContent() {
+      return _jsx("div", {
+        style: {
+          justifyContent: 'center'
+        },
+        children: " Loading..."
+      });
+    }
+  }
+  return {
+    default: MDXContent
+  };`, runtime));
+  const Content = mdxModule ? mdxModule.default : Fragment;
+
+  useEffect(() => {
+    ;(async () => {
+      setMdxModule(await run(content, runtime))
+    })()
+  }, [content])
+
   return (
     <div className="max-w-3xl mx-auto">
       <div className={markdownStyles["markdown"]}>
-        <MDXRemote {...content} components={MDXcomponents} />
+      <MDXProvider >
+        <Content components={MDXcomponents}/>
+      </MDXProvider>
       </div>
     </div>
   );

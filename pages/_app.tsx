@@ -3,14 +3,12 @@ import { ThemeProvider } from "next-themes";
 import "../styles/index.css";
 import "../styles/global.css";
 import "highlight.js/styles/dark.css";
-import { MDXProvider } from "@mdx-js/react";
+import "katex/dist/katex.min.css";
 
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
-    <MDXProvider>
       <ThemeProvider attribute="class">
         <Component {...pageProps} />
       </ThemeProvider>
-    </MDXProvider>
   );
 }

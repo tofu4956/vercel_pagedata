@@ -18,7 +18,7 @@ type Props = {
   post: PostType;
   morePosts: PostType[];
   preview?: boolean;
-  MDXContent: MDXRemoteSerializeResult<Record<string, unknown>>;
+  MDXContent: string;
   meta: string[];
 };
 
