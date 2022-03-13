@@ -35,7 +35,4 @@ remarkjsのプラグインマシマシにしようと思ったが、remark 14は
 
 ~~とりあえずNext.jsのESM正式対応待ちということで...~~ next12でPure ESM対応！移行しました(2021/12/12)
 
-A note[^1]
-
-[^1]: Big note.
 

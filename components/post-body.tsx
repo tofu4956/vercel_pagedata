@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import { YouTube } from "./post/youtube";
 import markdownStyles from "./markdown-styles.module.css";
 import "katex/dist/katex.min.css";
+import { CodePen } from "./post/codepen";
 
 type Props = {
   content: MDXRemoteSerializeResult<Record<string, unknown>>;
@@ -16,12 +17,17 @@ type YouTubeProps = {
   autoplay: number;
 };
 
+type CodePenProps = {
+  id: string;
+}
+
 //MDX components
 const MDXcomponents = {
   Link: (
     props: JSX.IntrinsicAttributes & LinkProps & { children?: ReactNode }
   ) => <Link {...props} />,
   YouTube: (props: YouTubeProps) => <YouTube {...props} />,
+  CodePen: (props: CodePenProps) => <CodePen {...props} />,
 };
 
 const PostBody = ({ content }: Props): JSX.Element => {

@@ -7,11 +7,21 @@ type Props = {
 
 export const YouTube = ({ width, height, id, autoplay }: Props) => {
   return (
-    <iframe
-      id="ytplayer"
-      width={width}
-      height={height}
-      src={`https://www.youtube.com/embed/${id}?autoplay=${autoplay}`}
-    />
+    <div className="relative pt-[56.25%] w-[100%]">
+      <iframe
+        id="ytplayer"
+        style={{
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+          top: '0',
+          margin: '0',
+        }}
+        width={width}
+        height={height}
+        src={`https://www.youtube.com/embed/${id}?autoplay=${autoplay}`}
+        loading="lazy"
+      />
+    </div>
   );
 };
