@@ -39,3 +39,8 @@ yarn-error.log*
 /_post/dynamic-routing.md
 /_posts/a.md
 /_posts/test.md
+
+#draft data
+
+/_posts/draft
+/_drafts

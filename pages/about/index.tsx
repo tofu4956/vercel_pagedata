@@ -54,18 +54,30 @@ const About = (): JSX.Element => {
             </ul>
             <br />
             <h2 className="text-xl">いろいろ</h2>
-            <ul  className={aboutPageStyles['list-link']}>
+            <ul className={aboutPageStyles["list-link"]}>
               <li>
                 <a href="https://xn--w4ha61066aymap3p.y.at">いろいろリンク</a>
               </li>
               <li>
-                <a href="https://twitter.com/tofu4956" className="flex items-center"><FaTwitter size="16" className="m-2"/><span className="underline">Twitter: tofu4956</span></a>
+                <a
+                  href="https://twitter.com/tofu4956"
+                  className="flex items-center"
+                >
+                  <FaTwitter size="16" className="m-2" />
+                  <span className="underline">Twitter: tofu4956</span>
+                </a>
               </li>
               <li>
-                <a href="https://github.com/tofu4956"><FaGithub size="16" className="m-2"/><span className="underline">Github: tofu4956</span></a>
+                <a href="https://github.com/tofu4956">
+                  <FaGithub size="16" className="m-2" />
+                  <span className="underline">Github: tofu4956</span>
+                </a>
               </li>
               <li>
-                <a href="https://speakerdeck.com/tofu4956"><FaSpeakerDeck size="16" className="m-2"/><span className="underline">Speaker Deck: tofu4956</span></a>
+                <a href="https://speakerdeck.com/tofu4956">
+                  <FaSpeakerDeck size="16" className="m-2" />
+                  <span className="underline">Speaker Deck: tofu4956</span>
+                </a>
               </li>
             </ul>
             <br />
