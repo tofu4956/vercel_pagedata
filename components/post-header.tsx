@@ -17,7 +17,7 @@ const PostHeader = ({
 }: Props): JSX.Element => {
   return (
     <>
-      <meta name="twitter:title" content={title} />
+      <meta name="twitter:title" content={`${title} | korejyanaide.cyou`} />
       <PostTitle>{title}</PostTitle>
       <div className="mb-4 sm:mx-0 md:mb-8">
         <CoverImage title={title} src={coverImage} />

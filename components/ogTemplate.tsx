@@ -34,7 +34,7 @@ export const OgTemplate = (props: Props) => {
   
   .ogp-excerpt {
     margin-top: 0;
-    font-size: 54px;
+    font-size: 32px;
     color: #bdbdbd;
     font-family: 'M PLUS Rounded 1c', sans-serif;
   }
