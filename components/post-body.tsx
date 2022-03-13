@@ -1,4 +1,3 @@
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import Link, { LinkProps } from "next/link";
 import { Fragment, ReactNode, useEffect, useState } from "react";
 import { YouTube } from "./post/youtube";
