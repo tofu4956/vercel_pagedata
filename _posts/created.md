@@ -1,9 +1,9 @@
 ---
 title: '作った'
 excerpt: '作った'
-coverImage: 'None'
+coverImage: 'null'
 date: '2021-09-29T12:36:00.000Z'
-ogImage: 'None'
+ogImage: 'null'
 ---
 
 なんかとりあえず文章書きたかったんじゃ...

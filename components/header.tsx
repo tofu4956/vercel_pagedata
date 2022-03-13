@@ -3,7 +3,7 @@ import DarkModeToggle from "./toggleDarkmode";
 const Header = (): JSX.Element => {
   return (
     <>
-      <section className="flex justify-between items-center my-16 md:mb-12">
+      <section className="flex justify-between items-center my-16 font-sans md:mb-12">
         <h4 className=" mt-8 mb-20 text-2xl font-bold tracking-tight md:text-4xl md:tracking-tighter">
           <Link href="/">
             <a className="hover:underline">Blog.</a>

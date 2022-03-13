@@ -9,10 +9,8 @@ type Props = {
 };
 
 const CoverImage = ({ title, src, slug }: Props): JSX.Element => {
-  const image =
-    src === ("None" || "none") ? (
-      ""
-    ) : (
+  if (src !== ('null')){
+    const image =
       <Image
         src={src}
         alt={`Cover Image for ${title}`}
@@ -20,7 +18,6 @@ const CoverImage = ({ title, src, slug }: Props): JSX.Element => {
           "hover:shadow-medium transition-shadow duration-200": slug,
         })}
       />
-    );
   return (
     <div className="sm:mx-0">
       {slug ? (
@@ -33,6 +30,11 @@ const CoverImage = ({ title, src, slug }: Props): JSX.Element => {
       <a></a>
     </div>
   );
-};
-
+  }else {
+    return (
+    <>
+    </>
+    )
+  }
+}
 export default CoverImage;
