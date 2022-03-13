@@ -33,7 +33,7 @@ const Meta = (): JSX.Element => {
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       <meta
         name="description"
-        content={`A blog using Next.js but using template.`}
+        content={`tofu4956 blog`}
       />
       <meta name="twitter:card" content="summary" />
     </Head>
