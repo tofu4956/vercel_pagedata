@@ -4,6 +4,8 @@ import { DOMAIN_NAME } from "../../lib/constants";
 import Header from "../../components/header";
 import PostTitle from "../../components/post-title";
 import Head from "next/head";
+import { FaGithub, FaSpeakerDeck, FaTwitter } from "react-icons/fa";
+import aboutPageStyles from "./about-page-styles.module.css";
 const About = (): JSX.Element => {
   return (
     <>
@@ -52,15 +54,18 @@ const About = (): JSX.Element => {
             </ul>
             <br />
             <h2 className="text-xl">いろいろ</h2>
-            <ul>
+            <ul  className={aboutPageStyles['list-link']}>
               <li>
                 <a href="https://xn--w4ha61066aymap3p.y.at">いろいろリンク</a>
               </li>
               <li>
-                <a href="https://twitter.com/tofu4956">Twitter</a>
+                <a href="https://twitter.com/tofu4956" className="flex items-center"><FaTwitter size="16" className="m-2"/><span className="underline">Twitter: tofu4956</span></a>
               </li>
               <li>
-                <a href="https://github.com/tofu4956">Github</a>
+                <a href="https://github.com/tofu4956"><FaGithub size="16" className="m-2"/><span className="underline">Github: tofu4956</span></a>
+              </li>
+              <li>
+                <a href="https://speakerdeck.com/tofu4956"><FaSpeakerDeck size="16" className="m-2"/><span className="underline">Speaker Deck: tofu4956</span></a>
               </li>
             </ul>
             <br />

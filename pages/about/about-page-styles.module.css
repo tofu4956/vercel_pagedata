@@ -1,0 +1,3 @@
+.list-link a {
+  @apply flex items-center
+}
