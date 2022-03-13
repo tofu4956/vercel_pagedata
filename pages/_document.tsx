@@ -4,9 +4,7 @@ export default class MyDocument extends Document {
   render(): JSX.Element {
     return (
       <Html lang="ja">
-        <Head>
-          <link rel="stylesheet" href="../components/prism.css" />
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />

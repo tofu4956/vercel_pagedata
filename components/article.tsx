@@ -8,10 +8,10 @@ type Props = {
 const Article = ({ posts }: Props): JSX.Element => {
   return (
     <section>
-      <h2 className="mb-8 max-w-3xl mx-auto text-6xl md:text-7xl font-bold tracking-tighter leading-tight">
+      <h2 className="mx-auto mb-8 max-w-3xl text-6xl font-bold tracking-tighter leading-tight md:text-7xl">
         Article
       </h2>
-      <div className="grid grid-cols-1 max-w-3xl md:gap-x-16 md:gap-y-32 lg:gap-x-32 gap-y-20  mb-32 mx-auto">
+      <div className="grid grid-cols-1 gap-y-20 mx-auto mb-32 max-w-3xl md:gap-x-16  md:gap-y-32 lg:gap-x-32">
         {posts.map((post) => (
           <PostPreview
             key={post.slug}

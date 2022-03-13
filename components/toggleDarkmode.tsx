@@ -10,7 +10,7 @@ function DarkModeToggle(): JSX.Element {
     <button
       aria-label="DarkModeToggle"
       type="button"
-      className="p-3 h-12 w-12 left-2/4 transform"
+      className="left-2/4 p-3 w-12 h-12"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
       {mounted && (
@@ -18,7 +18,7 @@ function DarkModeToggle(): JSX.Element {
           {theme === "dark" ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="w-5 h-5"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -27,7 +27,7 @@ function DarkModeToggle(): JSX.Element {
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="w-5 h-5"
               viewBox="0 0 20 20"
               fill="currentColor"
             >

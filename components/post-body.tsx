@@ -1,13 +1,11 @@
 import Link, { LinkProps } from "next/link";
-import { Fragment, ReactNode, useEffect, useState } from "react";
+import { ReactNode } from "react";
 import { YouTube } from "./post/youtube";
 import markdownStyles from "./markdown-styles.module.css";
 import { CodePen } from "./post/codepen";
-import * as runtime from 'react/jsx-runtime';
-import {run, runSync} from "@mdx-js/mdx"
-import React from "react"
-import { MDXProvider } from "@mdx-js/react";
-import type {MDXModule, MDXComponents} from 'mdx/types'
+import * as runtime from "react/jsx-runtime";
+import { runSync } from "@mdx-js/mdx";
+import type { MDXModule } from "mdx/types";
 
 type Props = {
   content: string;
@@ -22,7 +20,7 @@ type YouTubeProps = {
 
 type CodePenProps = {
   id: string;
-}
+};
 
 //MDX components
 const MDXcomponents = {
@@ -35,12 +33,12 @@ const MDXcomponents = {
 
 const PostBody = ({ content }: Props): JSX.Element => {
   const mdxModule: MDXModule = runSync(content, runtime);
-  const Content = mdxModule.default
+  const Content = mdxModule.default;
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="mx-auto max-w-3xl">
       <div className={markdownStyles["markdown"]}>
-        <Content components={MDXcomponents}/>
+        <Content components={MDXcomponents} />
       </div>
     </div>
   );

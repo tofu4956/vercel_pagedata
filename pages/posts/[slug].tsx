@@ -21,7 +21,7 @@ type Props = {
   meta: string[];
 };
 
-const Post = ({ post, morePosts, preview, MDXContent, meta }: Props) => {
+const Post = ({ post, preview, MDXContent }: Props) => {
   const router = useRouter();
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
@@ -82,14 +82,12 @@ export async function getStaticProps({ params }: Params) {
     "private",
   ]);
   const post = markdown.items;
-  const meta = markdown.meta;
-  const content = await markdownToHtml(post, meta);
+  const content = await markdownToHtml(post);
 
   return {
     props: {
       post: {
         ...post,
-        meta,
       },
       MDXContent: content,
     },

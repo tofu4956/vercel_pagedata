@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { FaTwitter, FaGetPocket, FaShareAlt, FaLink } from "react-icons/fa";
-import markdownStyles from "./markdown-styles.module.css";
 
 type Props = {
   title: string;

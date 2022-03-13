@@ -11,11 +11,11 @@ export const YouTube = ({ width, height, id, autoplay }: Props) => {
       <iframe
         id="ytplayer"
         style={{
-          width: '100%',
-          height: '100%',
-          position: 'absolute',
-          top: '0',
-          margin: '0',
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          top: "0",
+          margin: "0",
         }}
         width={width}
         height={height}

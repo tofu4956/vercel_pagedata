@@ -7,8 +7,8 @@ import "katex/dist/katex.min.css";
 
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
-      <ThemeProvider attribute="class">
-        <Component {...pageProps} />
-      </ThemeProvider>
+    <ThemeProvider attribute="class">
+      <Component {...pageProps} />
+    </ThemeProvider>
   );
 }

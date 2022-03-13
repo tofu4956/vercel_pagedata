@@ -1,17 +1,15 @@
-import { CMS_NAME } from "../lib/constants";
 import Link from "next/link";
 import DarkModeToggle from "./toggleDarkmode";
-import PostTitle from "./post-title";
 
 const Intro = (): JSX.Element => {
   return (
-    <section className="flex-col md:flex-row flex items-center md:justify-between mt-16 mb-16 md:mb-12">
-      <h1 className="text-6xl md:text-6xl font-bold tracking-tighter leading-tight md:pr-8">
+    <section className="flex flex-col items-center my-16 md:flex-row md:justify-between md:mb-12">
+      <h1 className="text-6xl font-bold tracking-tighter leading-tight md:pr-8 md:text-6xl">
         Blog.
       </h1>
-      <div className="justify-center grid grid-cols-2 items-center">
+      <div className="grid grid-cols-2 justify-center items-center">
         <Link href="/about">
-          <a className="text-l md:text-l font-bold">About</a>
+          <a className="text-lg font-bold md:text-lg">About</a>
         </Link>
         <DarkModeToggle />
       </div>

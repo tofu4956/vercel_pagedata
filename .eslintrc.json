@@ -8,7 +8,9 @@
     "plugin:react-hooks/recommended"
   ],
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "unused-imports",
+    "tailwindcss"
   ],
   "env": { "node": true, "es6": true },
   "parser": "@typescript-eslint/parser",
@@ -16,7 +18,15 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "include": "./**/*.ts",
   "rules": {
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "warn",
+    "tailwindcss/classnames-order": "warn",
+    "tailwindcss/enforces-negative-arbitrary-values": "warn",
+    "tailwindcss/enforces-shorthand": "warn",
+    "tailwindcss/migration-from-tailwind-2": "warn",
+    "tailwindcss/no-arbitrary-value": "off",
+    "tailwindcss/no-custom-classname": "warn",
+    "tailwindcss/no-contradicting-classname": "error"
   }
 }

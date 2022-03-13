@@ -6,7 +6,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const Layout = ({ preview, children }: Props): JSX.Element => {
+const Layout = ({ children }: Props): JSX.Element => {
   return (
     <>
       <Meta />
