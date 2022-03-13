@@ -26,6 +26,14 @@ const Post = ({ post, preview, MDXContent }: Props) => {
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
+  const ogHandler = (post: PostType) => {
+    if(post.ogImage === ("None" || "none")) {
+      return `http://${DOMAIN_NAME}/api/ogp?title=${post.title}&excerpt=${post.excerpt}`;
+    }
+    else {
+      return post.ogImage
+    }
+  }
   return (
     <Layout preview={preview}>
       <Container>
@@ -39,7 +47,7 @@ const Post = ({ post, preview, MDXContent }: Props) => {
                 <title>
                   {post.title} | {DOMAIN_NAME}
                 </title>
-                <meta property="og:image" content={post.ogImage.url} />
+                <meta property="og:image" content={ogHandler(post)} />
               </Head>
               <PostHeader
                 title={post.title}
@@ -75,6 +83,7 @@ export async function getStaticProps({ params }: Params) {
     "date",
     "slug",
     "content",
+    "excerpt",
     "ogImage",
     "coverImage",
     "category",

@@ -29,7 +29,7 @@ export function getPostBySlug(slug: string, fields: string[] = []) {
     if (field === "content") {
       items[field] = content;
     }
-
+    if (field === "")
     if (data[field]) {
       items[field] = data[field];
       meta[field] = data[field];

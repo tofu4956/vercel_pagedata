@@ -3,8 +3,7 @@ title: '作った'
 excerpt: '作った'
 coverImage: 'None'
 date: '2021-09-29T12:36:00.000Z'
-ogImage:
-  url: 'None'
+ogImage: 'None'
 ---
 
 なんかとりあえず文章書きたかったんじゃ...
