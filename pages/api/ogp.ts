@@ -13,7 +13,13 @@ type Params = {
 };
 const isDev = process.env.NODE_ENV !== "production";
 
-const getHtml = ({ title, excerpt }: { title: string, excerpt: string}): string => {
+const getHtml = ({
+  title,
+  excerpt,
+}: {
+  title: string;
+  excerpt: string;
+}): string => {
   const elem = createElement(OgTemplate, { title, excerpt });
   return ReactDOMServer.renderToString(elem);
 };

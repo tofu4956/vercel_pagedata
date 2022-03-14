@@ -31,10 +31,7 @@ const Meta = (): JSX.Element => {
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
       <meta name="theme-color" content="#000" />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
-      <meta
-        name="description"
-        content={`tofu4956 blog`}
-      />
+      <meta name="description" content={`tofu4956 blog`} />
       <meta name="twitter:card" content="summary" />
     </Head>
   );

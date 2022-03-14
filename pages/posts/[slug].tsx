@@ -27,11 +27,10 @@ const Post = ({ post, preview, MDXContent }: Props) => {
     return <ErrorPage statusCode={404} />;
   }
   const ogHandler = (post: PostType) => {
-    if(post.ogImage === 'null')
+    if (post.ogImage === "null")
       return `http://${DOMAIN_NAME}/api/ogp?title=${post.title}&excerpt=${post.excerpt}`;
-    else
-      return post.ogImage;
-    }
+    else return post.ogImage;
+  };
   return (
     <Layout preview={preview}>
       <Container>
