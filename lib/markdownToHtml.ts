@@ -6,6 +6,7 @@ import rehypeHighlight from "rehype-highlight";
 import remarkMdx from "remark-mdx";
 import { compile } from "@mdx-js/mdx";
 import rehypeKatex from "rehype-katex";
+import remarkMath from 'remark-math';
 
 type Items = {
   [key: string]: string | string[] | boolean;
@@ -16,10 +17,11 @@ export default async function markdownToHtml(markdown: Items) {
     outputFormat: "function-body",
     remarkPlugins: [
       remarkMdx,
-      remarkGfm,
       remarkSlug,
       [remarkToc, { tight: true }],
       remarkEmoji,
+      remarkMath,
+      remarkGfm,
     ],
     rehypePlugins: [rehypeHighlight, rehypeKatex],
   });

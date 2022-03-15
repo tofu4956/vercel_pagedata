@@ -20,6 +20,10 @@
   @apply italic;
 }
 
+.markdown h1 {
+  @apply text-4xl mt-12 mb-4 leading-snug;
+}
+
 .markdown h2 {
   @apply text-3xl mt-12 mb-4 leading-snug;
 }
@@ -35,3 +39,9 @@
 .markdown pre > code {
   @apply rounded-md text-base;
 }
+
+
+.markdown section ol > li  {
+  @apply list-decimal text-base;
+}
+

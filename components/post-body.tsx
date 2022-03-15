@@ -7,6 +7,7 @@ import * as runtime from "react/jsx-runtime";
 import { runSync } from "@mdx-js/mdx";
 import type { MDXModule } from "mdx/types";
 import Script from "next/script";
+import { Twitter } from "./post/twitter";
 
 type Props = {
   content: string;
@@ -32,6 +33,7 @@ const MDXcomponents = {
   ) => <Link {...props} />,
   YouTube: (props: YouTubeProps) => <YouTube {...props} />,
   CodePen: (props: CodePenProps) => <CodePen {...props} />,
+  Twitter: (props: {children?: ReactNode}) => <Twitter {...props} />,
 };
 
 const PostBody = ({ content }: Props): JSX.Element => {

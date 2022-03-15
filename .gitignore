@@ -36,9 +36,9 @@ yarn-error.log*
 
 #example data
 
-/_post/dynamic-routing.md
-/_posts/a.md
-/_posts/test.md
+/_post/dynamic-routing.mdx
+/_posts/a.mdx
+/_posts/test.mdx
 
 #draft data
 

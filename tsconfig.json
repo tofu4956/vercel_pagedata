@@ -28,5 +28,5 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "lib/markdownToHtml.ts"  ]
+    "lib/markdownToHtml.ts", "lib/rehype-footnote.js"  ]
 }
