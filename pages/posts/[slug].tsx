@@ -12,12 +12,13 @@ import { DOMAIN_NAME } from "../../lib/constants";
 import markdownToHtml from "../../lib/markdownToHtml";
 import PostType from "../../types/post";
 import PostShareFooter from "../../components/post-sharefooter";
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 type Props = {
   post: PostType;
   morePosts: PostType[];
   preview?: boolean;
-  MDXContent: string;
+  MDXContent: MDXRemoteSerializeResult<Record<string, unknown>>;
   meta: string[];
 };
 

@@ -1,17 +1,15 @@
 import Link, { LinkProps } from "next/link";
-import { Fragment, ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useRef} from "react";
 import { YouTube } from "./post/youtube";
 import markdownStyles from "./markdown-styles.module.css";
 import { CodePen } from "./post/codepen";
-import * as runtime from "react/jsx-runtime";
-import { run, runSync } from "@mdx-js/mdx";
-import type { MDXModule } from "mdx/types";
 import Script from "next/script";
 import { Twitter } from "./post/twitter";
 import { SpeakerDeck } from "./post/speakerdeck";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
 type Props = {
-  content: string;
+  content: MDXRemoteSerializeResult<Record<string, unknown>>;
 };
 
 type YouTubeProps = {
@@ -39,33 +37,7 @@ const MDXcomponents = {
 };
 
 const PostBody = ({ content }: Props): JSX.Element => {
-  //  const mdxModule: MDXModule = runSync(content, runtime);
-  const [mdxModule, setMdxModule] = useState<MDXModule>(runSync(`/*@jsxRuntime automatic @jsxImportSource react*/
-  const {jsx: _jsx} = arguments[0];
-  function MDXContent(props = {}) {
-    const {wrapper: MDXLayout} = props.components || ({});
-    return MDXLayout ? _jsx(MDXLayout, Object.assign({}, props, {
-      children: _jsx(_createMdxContent, {})
-    })) : _createMdxContent();
-    function _createMdxContent() {
-      return _jsx("div", {
-        style: {
-          justifyContent: 'center'
-        },
-        children: " Loading..."
-      });
-    }
-  }
-  return {
-    default: MDXContent
-  };`, runtime));
-    const Content = mdxModule.default
     const containerElem = useRef(null);
-    useEffect(() => {
-      (async () => {
-        setMdxModule(await run(content, runtime) as MDXModule);
-      })()
-    }, [content])
     return (
       <>
         <Script
@@ -77,7 +49,7 @@ const PostBody = ({ content }: Props): JSX.Element => {
         />
         <div className="mx-auto max-w-3xl">
           <div className={markdownStyles["markdown"]}>
-            <Content components={MDXcomponents} />
+            <MDXRemote {...content} components={MDXcomponents} />
           </div>
         </div>
       </>
