@@ -5,6 +5,12 @@
 
 /* Write your own custom base styles here */
 
+@layer base {
+  ul, ol {
+    list-style: revert;
+  }
+}
+
 /* Start purging... */
 @tailwind components;
 /* Stop purging. */

@@ -28,5 +28,5 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "lib/markdownToHtml.ts", "lib/rehype-footnote.js"  ]
+    "lib/markdownToHtml.ts", "lib/rehype-footnote.js", "public/assets/blog/nseem-2022/snowfall.js"  ]
 }

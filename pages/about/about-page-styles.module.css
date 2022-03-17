@@ -1,3 +1,7 @@
 .list-link a {
   @apply flex items-center
 }
+
+.list-link li {
+  @apply list-none;
+}

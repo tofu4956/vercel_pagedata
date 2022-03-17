@@ -2,10 +2,14 @@
   @apply text-lg leading-relaxed font-post;
 }
 
-.markdown p,
-.markdown ul,
-.markdown ol {
+.markdown p
+{
   @apply my-6;
+}
+
+.markdown ul,
+.markdown ol{
+  @apply m-6;
 }
 
 .markdown blockquote {
@@ -43,5 +47,9 @@
 
 .markdown section ol > li  {
   @apply list-decimal text-base;
+}
+
+img.emoji {
+  @apply w-4 h-4;
 }
 

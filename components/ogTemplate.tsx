@@ -28,7 +28,7 @@ export const OgTemplate = (props: Props) => {
   }
   
   .ogp-title {
-    font-size: 120px;
+    font-size: 100px;
     margin-bottom: 20px;
   }
   
@@ -41,7 +41,7 @@ export const OgTemplate = (props: Props) => {
   
   .ogp-credit {
     position: absolute;
-    font-size: 54px;
+    font-size: 32px;
     color: #bdbdbd;
     bottom: 0;
     right: 0;

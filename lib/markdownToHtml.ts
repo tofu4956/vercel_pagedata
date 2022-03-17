@@ -24,6 +24,7 @@ export default async function markdownToHtml(markdown: Items) {
       remarkGfm,
     ],
     rehypePlugins: [rehypeHighlight, rehypeKatex],
+    useDynamicImport: true,
   });
   return String(result);
 }

@@ -16,7 +16,7 @@ const About = (): JSX.Element => {
         <Container>
           <Header />
           <PostTitle>About</PostTitle>
-          <body className="font-post">
+          <body className="font-post ">
             人間
             <br />
             <br />
