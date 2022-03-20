@@ -16,6 +16,10 @@
   @apply bg-gray-100 ml-8 rounded-md;
 }
 
+.markdown blockquote > p{
+  @apply mx-2 my-4
+}
+
 :global(.dark) .markdown blockquote {
   @apply bg-gray-800
 }

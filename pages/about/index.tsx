@@ -4,7 +4,7 @@ import { DOMAIN_NAME } from "../../lib/constants";
 import Header from "../../components/header";
 import PostTitle from "../../components/post-title";
 import Head from "next/head";
-import { FaGithub, FaSpeakerDeck, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLink, FaSpeakerDeck, FaTwitter } from "react-icons/fa";
 import aboutPageStyles from "./about-page-styles.module.css";
 const About = (): JSX.Element => {
   return (
@@ -16,7 +16,7 @@ const About = (): JSX.Element => {
         <Container>
           <Header />
           <PostTitle>About</PostTitle>
-          <body className="font-post ">
+          <body className={`font-post ${aboutPageStyles['list-body']}`}>
             人間
             <br />
             <br />
@@ -33,7 +33,6 @@ const About = (): JSX.Element => {
                 </a>
               </li>
             </ul>
-            <br />
             <ul>
               <li>
                 <p>Dark Forest v0.6 Round 1 42th</p>
@@ -56,26 +55,32 @@ const About = (): JSX.Element => {
             <h2 className="text-xl">いろいろ</h2>
             <ul className={aboutPageStyles["list-link"]}>
               <li>
-                <a href="https://xn--w4ha61066aymap3p.y.at">いろいろリンク</a>
+                <a
+                href="https://xn--w4ha61066aymap3p.y.at"
+                className="flex items-center"
+                >
+                  <FaLink size="16" className="my-2 mr-2" />
+                  <span className="underline">いろいろリンク</span>
+                </a>
               </li>
               <li>
                 <a
                   href="https://twitter.com/tofu4956"
                   className="flex items-center"
                 >
-                  <FaTwitter size="16" className="m-2" />
+                  <FaTwitter size="16" className="my-2 mr-2" />
                   <span className="underline">Twitter: tofu4956</span>
                 </a>
               </li>
               <li>
                 <a href="https://github.com/tofu4956">
-                  <FaGithub size="16" className="m-2" />
+                  <FaGithub size="16" className="my-2 mr-2" />
                   <span className="underline">Github: tofu4956</span>
                 </a>
               </li>
               <li>
                 <a href="https://speakerdeck.com/tofu4956">
-                  <FaSpeakerDeck size="16" className="m-2" />
+                  <FaSpeakerDeck size="16" className="my-2 mr-2" />
                   <span className="underline">Speaker Deck: tofu4956</span>
                 </a>
               </li>

@@ -2,3 +2,7 @@ html {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-duration: 500ms;
 }
+
+.twitter-tweet > iframe {
+  border-radius: 14px;
+}

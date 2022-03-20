@@ -1,6 +1,17 @@
 module.exports = {
   content: ['./components/**/*.tsx', './pages/**/*.tsx'],
   darkMode: 'class',
+  plugins: [require("daisyui")],
+  daisyui: {
+    styled: true,
+    themes: true,
+    base: false,
+    utils: true,
+    logs: true,
+    rtl: false,
+    prefix: "",
+    darkTheme: "dark",
+  },
   theme: {
     extend: {
       colors: {
