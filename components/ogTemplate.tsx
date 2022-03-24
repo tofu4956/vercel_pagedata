@@ -28,7 +28,7 @@ export const OgTemplate = (props: Props) => {
   }
   
   .ogp-title {
-    font-size: 100px;
+    font-size: 60px;
     margin-bottom: 20px;
   }
   
