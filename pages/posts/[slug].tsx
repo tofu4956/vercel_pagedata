@@ -29,7 +29,7 @@ const Post = ({ post, preview, MDXContent }: Props) => {
   }
   const ogHandler = (post: PostType) => {
     if (post.ogImage === "null")
-      return `http://${DOMAIN_NAME}/api/ogp?title=${post.title}&excerpt=${post.excerpt}`;
+      return `https://${DOMAIN_NAME}/api/ogp?title=${post.title}&excerpt=${post.excerpt}`;
     else return post.ogImage;
   };
   return (

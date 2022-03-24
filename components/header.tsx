@@ -9,11 +9,13 @@ const Header = (): JSX.Element => {
             <a className="hover:underline">Blog.</a>
           </Link>
         </h4>
-        <div className="grid grid-cols-2 justify-center items-center mt-4 mb-14  md:mb-12">
+        <div className="grid grid-cols-2 justify-center items-center mt-4 mb-14 md:mb-12">
           <Link href="/about">
             <a className="text-lg font-bold md:text-lg">About</a>
           </Link>
-          <DarkModeToggle />
+          <div className="flex justify-center items-center">
+            <DarkModeToggle />
+          </div>
         </div>
       </section>
     </>

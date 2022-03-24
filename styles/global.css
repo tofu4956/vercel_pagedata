@@ -6,3 +6,7 @@ html {
 .twitter-tweet > iframe {
   border-radius: 14px;
 }
+
+cite {
+  @apply text-2xs;
+}

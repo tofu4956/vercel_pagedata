@@ -13,15 +13,19 @@
 }
 
 .markdown blockquote {
-  @apply bg-gray-100 ml-8 rounded-md;
+  @apply bg-gray-100 ml-8 pl-2 rounded-r-md border-l-4;
 }
 
-.markdown blockquote > p{
-  @apply mx-2 my-4
+.markdown blockquote > p {
+  @apply mx-2 ml-6
 }
 
 :global(.dark) .markdown blockquote {
   @apply bg-gray-800
+}
+
+.markdown blockquote > cite {
+  @apply block text-right mr-2 text-2xs;
 }
 
 .markdown blockquote p {
