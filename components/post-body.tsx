@@ -7,6 +7,10 @@ import Script from "next/script";
 import { Twitter } from "./post/twitter";
 import { SpeakerDeck } from "./post/speakerdeck";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { Alert } from "./post/alert/alert";
+import { AlertWarn } from "./post/alert/alert-warn";
+import { AlertError } from "./post/alert/alert-error";
+
 
 type Props = {
   content: MDXRemoteSerializeResult<Record<string, unknown>>;
@@ -33,7 +37,10 @@ const MDXcomponents = {
   YouTube: (props: YouTubeProps) => <YouTube {...props} />,
   CodePen: (props: CodePenProps) => <CodePen {...props} />,
   Twitter: (props: {children?: ReactNode}) => <Twitter {...props} />,
-  SpeakerDeck: (props: {src: string, title: string}) => <SpeakerDeck {...props} />
+  SpeakerDeck: (props: {src: string, title: string}) => <SpeakerDeck {...props} />,
+  Alert: (props: {children?: ReactNode}) => <Alert {...props} />,
+  AlertWarn: (props: {children?: ReactNode}) => <AlertWarn {...props} />,
+  AlertError: (props: {children?: ReactNode}) => <AlertError {...props} />,
 };
 
 const PostBody = ({ content }: Props): JSX.Element => {

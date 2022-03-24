@@ -3,8 +3,8 @@ module.exports = {
   darkMode: 'class',
   plugins: [require("daisyui")],
   daisyui: {
-    styled: true,
-    themes: true,
+    styled: false,
+    themes: ["light", "night", "dark"],
     base: false,
     utils: true,
     logs: true,
