@@ -46,6 +46,7 @@ const Post = ({ post, preview, MDXContent }: Props) => {
                   {post.title} | {DOMAIN_NAME}
                 </title>
                 <meta property="og:image" content={ogHandler(post)} />
+                <meta property="twitter:card" content="summary_large_image" />
               </Head>
               <PostHeader
                 title={post.title}
