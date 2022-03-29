@@ -39,7 +39,7 @@ const PostShareFooter = ({ title }: Props): JSX.Element => {
   return (
     <div className="flex right-0 justify-center space-x-4">
       <a
-        href={`https://twitter.com/intent/tweet?text=${title} https://${DOMAIN_NAME}/posts/${router.query["slug"]}`}
+        href={`https://twitter.com/intent/tweet?text=${title} %7C ${DOMAIN_NAME}%0Ahttps://${DOMAIN_NAME}/posts/${router.query["slug"]}`}
       >
         <FaTwitter size={icon_size} />
       </a>
