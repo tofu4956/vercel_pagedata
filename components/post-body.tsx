@@ -1,5 +1,5 @@
 import Link, { LinkProps } from "next/link";
-import { ReactNode, useRef} from "react";
+import { ReactNode, useRef } from "react";
 import { YouTube } from "./post/youtube";
 import markdownStyles from "./markdown-styles.module.css";
 import { CodePen } from "./post/codepen";
@@ -10,7 +10,6 @@ import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { Alert } from "./post/alert/alert";
 import { AlertWarn } from "./post/alert/alert-warn";
 import { AlertError } from "./post/alert/alert-error";
-
 
 type Props = {
   content: MDXRemoteSerializeResult<Record<string, unknown>>;
@@ -36,31 +35,33 @@ const MDXcomponents = {
   ) => <Link {...props} />,
   YouTube: (props: YouTubeProps) => <YouTube {...props} />,
   CodePen: (props: CodePenProps) => <CodePen {...props} />,
-  Twitter: (props: {children?: ReactNode}) => <Twitter {...props} />,
-  SpeakerDeck: (props: {src: string, title: string}) => <SpeakerDeck {...props} />,
-  Alert: (props: {children?: ReactNode}) => <Alert {...props} />,
-  AlertWarn: (props: {children?: ReactNode}) => <AlertWarn {...props} />,
-  AlertError: (props: {children?: ReactNode}) => <AlertError {...props} />,
+  Twitter: (props: { children?: ReactNode }) => <Twitter {...props} />,
+  SpeakerDeck: (props: { src: string; title: string }) => (
+    <SpeakerDeck {...props} />
+  ),
+  Alert: (props: { children?: ReactNode }) => <Alert {...props} />,
+  AlertWarn: (props: { children?: ReactNode }) => <AlertWarn {...props} />,
+  AlertError: (props: { children?: ReactNode }) => <AlertError {...props} />,
 };
 
 const PostBody = ({ content }: Props): JSX.Element => {
-    const containerElem = useRef(null);
-    return (
-      <>
-        <Script
-          src="https://platform.twitter.com/widgets.js"
-          onLoad={() => {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (window as any).twttr.widgets.load(containerElem.current);
-          }}
-        />
-        <div className="mx-auto max-w-3xl">
-          <div className={markdownStyles["markdown"]}>
-            <MDXRemote {...content} components={MDXcomponents} />
-          </div>
+  const containerElem = useRef(null);
+  return (
+    <>
+      <Script
+        src="https://platform.twitter.com/widgets.js"
+        onLoad={() => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (window as any).twttr.widgets.load(containerElem.current);
+        }}
+      />
+      <div className="mx-auto max-w-3xl">
+        <div className={markdownStyles["markdown"]}>
+          <MDXRemote {...content} components={MDXcomponents} />
         </div>
-      </>
-    );
-  };
+      </div>
+    </>
+  );
+};
 
 export default PostBody;

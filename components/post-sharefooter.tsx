@@ -29,7 +29,8 @@ const ClickLinkCopyHandler = ({
 }: {
   urlParams: string | string[] | undefined;
 }) => {
-  if (typeof urlParams === "string") navigator.clipboard.writeText(`https://${DOMAIN_NAME}/posts/` + urlParams);
+  if (typeof urlParams === "string")
+    navigator.clipboard.writeText(`https://${DOMAIN_NAME}/posts/` + urlParams);
 };
 
 const PostShareFooter = ({ title }: Props): JSX.Element => {

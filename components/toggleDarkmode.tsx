@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import {IoSunny, IoMoon} from "react-icons/io5"
-
+import { IoSunny, IoMoon } from "react-icons/io5";
 
 function DarkModeToggle(): JSX.Element {
   const { theme, setTheme } = useTheme();
@@ -16,13 +15,7 @@ function DarkModeToggle(): JSX.Element {
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
       {mounted && (
-        <>
-          {theme === "dark" ? (
-            <IoMoon size={20}/>
-          ) : (
-            <IoSunny size={20}/>
-          )}
-        </>
+        <>{theme === "dark" ? <IoMoon size={20} /> : <IoSunny size={20} />}</>
       )}
     </button>
   );

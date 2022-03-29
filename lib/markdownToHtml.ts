@@ -6,7 +6,7 @@ import rehypeHighlight from "rehype-highlight";
 import remarkMdx from "remark-mdx";
 import { serialize } from "next-mdx-remote/serialize";
 import rehypeKatex from "rehype-katex";
-import remarkMath from 'remark-math';
+import remarkMath from "remark-math";
 
 type Items = {
   [key: string]: string | string[] | boolean;
@@ -15,16 +15,16 @@ type Items = {
 export default async function markdownToHtml(markdown: Items) {
   const result = await serialize(String(markdown["content"]), {
     mdxOptions: {
-    remarkPlugins: [
-      remarkMdx,
-      remarkSlug,
-      [remarkToc, { tight: true }],
-      remarkEmoji,
-      remarkMath,
-      remarkGfm,
-    ],
-    rehypePlugins: [rehypeHighlight, rehypeKatex],
-    }
+      remarkPlugins: [
+        remarkMdx,
+        remarkSlug,
+        [remarkToc, { tight: true }],
+        remarkEmoji,
+        remarkMath,
+        remarkGfm,
+      ],
+      rehypePlugins: [rehypeHighlight, rehypeKatex],
+    },
   });
   return result;
 }

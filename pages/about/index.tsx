@@ -16,7 +16,7 @@ const About = (): JSX.Element => {
         <Container>
           <Header />
           <PostTitle>About</PostTitle>
-          <body className={`font-post ${aboutPageStyles['list-body']}`}>
+          <body className={`font-post ${aboutPageStyles["list-body"]}`}>
             人間
             <br />
             <br />
@@ -56,8 +56,8 @@ const About = (): JSX.Element => {
             <ul className={aboutPageStyles["list-link"]}>
               <li>
                 <a
-                href="https://xn--w4ha61066aymap3p.y.at"
-                className="flex items-center"
+                  href="https://xn--w4ha61066aymap3p.y.at"
+                  className="flex items-center"
                 >
                   <FaLink size="16" className="my-2 mr-2" />
                   <span className="underline">いろいろリンク</span>
