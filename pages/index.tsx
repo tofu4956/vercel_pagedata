@@ -16,7 +16,7 @@ const Index = ({ allPosts }: Props) => {
   return (
     <>
       <Layout>
-        <meta name="og:title" content="korejyanaide.cyou"></meta>
+        <meta name="og:title" content="{DOMAIN_NAME}"></meta>
         <Head>
           <title>{DOMAIN_NAME}</title>
         </Head>

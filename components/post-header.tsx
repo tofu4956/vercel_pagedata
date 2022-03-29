@@ -1,6 +1,7 @@
 import DateFormatter from "./date-formatter";
 import CoverImage from "./cover-image";
 import PostTitle from "./post-title";
+import { DOMAIN_NAME } from "../lib/constants";
 
 type Props = {
   title: string;
@@ -17,7 +18,7 @@ const PostHeader = ({
 }: Props): JSX.Element => {
   return (
     <>
-      <meta name="twitter:title" content={`${title} | korejyanaide.cyou`} />
+      <meta name="twitter:title" content={`${title} | ${DOMAIN_NAME}`} />
       <PostTitle>{title}</PostTitle>
       <div className="mb-4 sm:mx-0 md:mb-8">
         <CoverImage title={title} src={coverImage} />

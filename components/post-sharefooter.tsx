@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { FaTwitter, FaGetPocket, FaShareAlt, FaLink } from "react-icons/fa";
+import { DOMAIN_NAME } from "../lib/constants";
 
 type Props = {
   title: string;
@@ -14,11 +15,11 @@ const ClickOtherShareHandler = ({ title, urlParams }: Handler) => {
     navigator.share({
       title: title,
       text: "tofu4956's blog",
-      url: "https://korejyanaide.cyou/posts/" + urlParams,
+      url: `https://${DOMAIN_NAME}/posts/` + urlParams,
     });
   } else {
     location.href =
-      "https://addtoany.com/share?url=https://korejyanaide.cyou/posts/" +
+      `https://addtoany.com/share?url=https://${DOMAIN_NAME}/posts/` +
       urlParams;
   }
 };
@@ -28,7 +29,7 @@ const ClickLinkCopyHandler = ({
 }: {
   urlParams: string | string[] | undefined;
 }) => {
-  if (typeof urlParams === "string") navigator.clipboard.writeText(urlParams);
+  if (typeof urlParams === "string") navigator.clipboard.writeText(`https://${DOMAIN_NAME}/posts/` + urlParams);
 };
 
 const PostShareFooter = ({ title }: Props): JSX.Element => {
@@ -38,13 +39,13 @@ const PostShareFooter = ({ title }: Props): JSX.Element => {
   return (
     <div className="flex right-0 justify-center space-x-4">
       <a
-        href={`https://twitter.com/intent/tweet?text=${title} https://korejyanaide.cyou/posts/${router.query["slug"]}`}
+        href={`https://twitter.com/intent/tweet?text=${title} https://${DOMAIN_NAME}/posts/${router.query["slug"]}`}
       >
         <FaTwitter size={icon_size} />
       </a>
 
       <a
-        href={`https://getpocket.com/save?url=https://korejyanaide.cyou/posts/${router.query["slug"]}`}
+        href={`https://getpocket.com/save?url=https://${DOMAIN_NAME}/posts/${router.query["slug"]}`}
       >
         <FaGetPocket size={icon_size} />
       </a>
