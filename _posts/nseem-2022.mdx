@@ -1,0 +1,243 @@
+---
+title: '学生エンジニア交流会なるものに登壇したのといろいろ補足'
+date: '2022-03-30T05:01:45'
+excerpt: '全国学生エンジニア交流会「NSEEM」に参加し、MDXでブログを書くテーマで登壇させていただきました'
+coverImage: 'null'
+ogImage: 'null'
+category: '技術'
+tags: ['LT']
+private: false
+---
+
+<SpeakerDeck src="https://speakerdeck.com/player/c73b18f644fd4ce489b7acea2e5ee619" title="MDXでブログを書こう" />
+
+最近[全国学生エンジニア交流会「NSEEM」](https://zli.connpass.com/event/239501/)に参加し、MDXでブログを書くというお題目で登壇、発表させていただきました。初のLTだったためかスライドが非常に見づらい感じになってしまったので、いろいろ書いていこうと思います。スライドの補完としてどうぞ。
+
+# Table of content
+
+# MDX?
+
+https://mdxjs.com/
+
+>MDX allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast. 🚀
+>
+><cite>https://mdxjs.com/</cite>
+
+🚀←かわいいね
+
+# 導入
+
+## 通常
+
+スライドだけだとやることが多い！だけで済ませてしまっていますが、**実際やることは多いです**。
+
+[公式のGetting Started](https://mdxjs.com/docs/getting-started/)でもあるように、実際バンドラやサイトジェネレータ毎で設定が異なります。
+正直ここで説明するのは*本当に*めちゃくちゃ長いので省略します。公式を見てください。
+
+ちなみにReactの場合、ViteかCreate React App(CRA)か何も利用していないか、バンドルがesbuildかRollupかwebpackかどうかでも必要パッケージと設定が異なります。キツい。あとはReact以外(Preactも含む)はJSXランタイムも導入する必要あり。
+## Next.js
+
+https://nextjs.org/docs/advanced-features/using-mdx#mdx-plugins
+
+dependences入れて、
+
+```bash
+npm install @next/mdx @mdx-js/loader
+```
+
+next.config.js書いて、
+
+```js
+// next.config.js
+
+const withMDX = require('@next/mdx')({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+    // If you use `MDXProvider`, uncomment the following line.
+    // providerImportSource: "@mdx-js/react",
+  },
+})
+module.exports = withMDX({
+  // Append the default value with md extensions
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+})
+```
+
+/pagesに.mdxファイルをおいて、完成！
+```
+  - /pages
+    - my-mdx-page.mdx
+  - package.json
+```
+frontmatter等は存在しないので可読性や継続性の面ではかなり微妙な気もしますが、スニペットを作成して使えばある程度は解決できるため、気軽に始めたいのであれば正直このやり方が一番早いかもしれません。
+
+なおこの場合でも@mdx-js/reactのproviderは使えます。
+
+## MDX on demand
+
+https://mdxjs.com/guides/mdx-on-demand/
+
+他からmdxを読み込んでコンパイルするやり方です。この方法は@mdx-js/mdxを利用して、サーバーでコンパイルし、クライアントはmdxのコンポーネントを評価することにより実現しています。現代的！
+
+導入方法は通常の場合とほぼ同様です。(mdxをコンポーネント扱いしない為、@mdx-js/loaderは不要)具体的な動作例は後述しています。
+
+
+## hashicorp/next-mdx-remote
+
+https://github.com/hashicorp/next-mdx-remote
+
+このライブラリはMDX on demandとほぼ同等ですが、変数インポートやfrontmatter等の機能が付随しているモジュールです。ts対応。
+
+ちなみにこのblogはこのプラグインを利用しています。
+
+なお
+
+> **How Can I Build A Blog With This?**
+> 
+> Data has shown that 99% of use cases for all developer tooling are building unnecessarily complex personal blogs. Just kidding. But seriously, if you are trying to build a blog for personal or small business use, consider just using normal html and css. You definitely do not need to be using a heavy full-stack javascript framework to make a simple blog. You'll thank yourself later when you return to make an update in a couple years and there haven't been 10 breaking releases to all of your dependencies.
+>
+> <cite>https://github.com/hashicorp/next-mdx-remote#how-can-i-build-a-blog-with-this</cite>
+
+別に何使ったっていいじゃん！(それはそう)
+
+# MDX on demandを試す
+
+発表では軽く触れる程度でしたが、色々試してみることにします。
+
+## 基本
+
+```js
+import {useState, useEffect, Fragment} from 'react'
+import * as runtime from 'react/jsx-runtime.js'
+import {compile, run} from '@mdx-js/mdx'
+
+export default function Page({code}) {
+  const [mdxModule, setMdxModule] = useState()
+  const Content = mdxModule ? mdxModule.default : Fragment
+
+  useEffect(() => {
+    ;(async () => {
+      setMdxModule(await run(code, runtime))
+    })()
+  }, [code])
+
+  return <Content />
+}
+
+export async function getStaticProps() {
+  const code = String(
+    await compile('# hi', {outputFormat: 'function-body' /* …otherOptions */})
+  )
+  return {props: {code}}
+}
+```
+*https://mdxjs.com/guides/mdx-on-demand/#nextjs-example*
+
+exampleはこんな感じ。
+
+しかしこのexampleだと`<Content components={/*hoge*/}/>`とした場合にReact.Fragment扱いの為以下のエラーが発生します。(ロードは出来ます)
+```
+Warning: Invalid prop `components` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.
+    at PostBody (webpack-internal:///./components/post-body.tsx:69:21)
+    at article
+    at div
+    at div
+    at Container (webpack-internal:///./components/container.tsx:8:22)
+    at main
+    at div
+    at Layout (webpack-internal:///./components/layout.tsx:12:19)
+    at Post (webpack-internal:///./pages/posts/[slug].tsx:42:23)
+    at exports.ThemeProvider (/home/murasame/vercel_pagedata/node_modules/next-themes/dist/index.js:1:1552)
+    at MyApp (webpack-internal:///./pages/_app.tsx:23:18)
+    at StyleRegistry (/home/murasame/vercel_pagedata/node_modules/styled-jsx/dist/index/index.js:671:34)
+    at AppContainer (/home/murasame/vercel_pagedata/node_modules/next/dist/server/render.js:394:29)
+    at AppContainerWithIsomorphicFiberStructure (/home/murasame/vercel_pagedata/node_modules/next/dist/server/render.js:424:57)
+    at div
+    at Body (/home/murasame/vercel_pagedata/node_modules/next/dist/server/render.js:701:21)
+```
+これを直していきます。便宜上ここからはtypescriptで説明します。ゆるして
+
+まず@mdx-js/mdxには型ファイル(mdx/types)が存在します。その中のMDXModuleはコンパイル後のMDXのコンポーネント定義です。
+mdxModuleにはMDXModule型を入れればいいので、単純にダミーで変数を入れてあげれば解決します。勿論コンパイル済みのダミーはそのままでは動かないので、runSync関数でMDXModuleとして認識させます。
+```tsx
+const PostBody = ({ content }: Props): JSX.Element => {
+  //  const mdxModule: MDXModule = runSync(content, runtime);
+  const [mdxModule, setMdxModule] = useState<MDXModule>(runSync(`/*@jsxRuntime automatic @jsxImportSource react*/
+  const {jsx: _jsx} = arguments[0];
+  function MDXContent(props = {}) {
+    const {wrapper: MDXLayout} = props.components || ({});
+    return MDXLayout ? _jsx(MDXLayout, Object.assign({}, props, {
+      children: _jsx(_createMdxContent, {})
+    })) : _createMdxContent();
+    function _createMdxContent() {
+      return _jsx("div", {
+        style: {
+          justifyContent: 'center'
+        },
+        children: " Loading..."
+      });
+    }
+  }
+  return {
+    default: MDXContent
+  };`, runtime));
+    const Content = mdxModule.default
+    useEffect(() => {
+      (async () => {
+        setMdxModule(await run(content, runtime) as MDXModule);
+      })()
+    }, [content])
+    return (
+            <Content components={MDXcomponents} />
+    );
+  };
+
+```
+これだけでロードすることが出来ます！(別途コンパイルは必要)ちなみにblog-starter-typescriptを流用している場合(自分の例)は、ローカルにmdxが存在しているため、表示だけならば
+```tsx
+const PostBody = ({ content }: Props): JSX.Element => {
+  const mdxModule: MDXModule = runSync(content, runtime);
+  const Content = mdxModule.default
+
+  return (
+    <div className="max-w-3xl mx-auto">
+      <div className={markdownStyles["markdown"]}>
+        <Content components={MDXcomponents}/>
+      </div>
+    </div>
+  );
+```
+これだけでも出来ます。(あまりおすすめはしない)
+
+## import文(失敗)
+
+先に書いておくとMDX on demandでもimport文には対応していません。
+> Note: MDX is not a bundler (esbuild, webpack, and Rollup are bundlers): you can’t import other code from the server within the string of MDX and get a nicely minified bundle out or so.
+>
+><cite>https://mdxjs.com/guides/mdx-on-demand/#quick-example</cite>
+
+*意訳: MDXはバンドラじゃないんで、他からコードインポートとか、(webpackとかRollupみたいに)コード圧縮して出力するとかそういうの出来ないっす*
+
+というわけでNext.jsであれば大人しくnext-mdx-remoteを使うべきです。( ~まあこの記述に気づかず数時間時間使ったんですけどね~ )
+
+ちなみに無理矢理動かそうとするとこうなります。
+
+![だめ](/assets/blog/nseem-2022/3.jpg)
+
+？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？
+
+# しくみ
+
+基本的にはスライドに書いてあることが全てですが、vfileについてLTだと時間がなくて適当な説明になってしまったので補足。
+
+[vfile](https://github.com/vfile/vfile)はunified ecosystemの中にある1つのパッケージで、メタデータ付きの仮想データフォーマットを提供する技術(?)です。vfileに限らずsyntax-tree等もそうですが、大体unifiedの為に作られています。こちらはデータ処理のためのものらしい。
+
+>It was made specifically for unified and generally for the common task of parsing, transforming, and serializing data, where vfile handles everything about the document being compiled. This is useful for example when building linters, compilers, static site generators, or other build tools. vfile is part of the unified collective.
+>
+><cite>https://github.com/vfile/vfile</cite>
+
+# 余談
+
+場数の問題なのかもしれませんが、もっとこう要領よく話せるようになりたいですね。あと友人曰くあんまり初対面の印象が良くないので、どのようにカバーしたらいいかなあとは思います。真人間になりてえ。
