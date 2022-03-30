@@ -4,11 +4,15 @@ import "../styles/index.css";
 import "../styles/global.css";
 import "highlight.js/styles/a11y-dark.css";
 import "katex/dist/katex.min.css";
+import Script from "next/script";
 
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
-    <ThemeProvider attribute="class">
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <>
+      <Script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon={{"token": process.env["NEXT_PUBLIC_cltoken"]}} />
+      <ThemeProvider attribute="class">
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </>
   );
 }
