@@ -10,7 +10,7 @@ import { CLOUDFLARE_TOKEN } from "../lib/constants";
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
-      <Script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon={{"token": CLOUDFLARE_TOKEN}} />
+      <Script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon={String(`{"token": ${CLOUDFLARE_TOKEN}}`)} />
       <ThemeProvider attribute="class">
         <Component {...pageProps} />
       </ThemeProvider>
