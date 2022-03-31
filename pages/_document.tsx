@@ -6,7 +6,6 @@ export default class MyDocument extends Document {
     return (
       <Html lang="ja">
         <Head>
-          <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon={String(`{"token": ${CLOUDFLARE_TOKEN}}`)} />
         </Head>
         <body className="dark:bg-stone-900">
           <Main />
