@@ -10,7 +10,7 @@ import Script from "next/script";
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
-      <Script defer src='https://static.cloudflareinsights.com/beacon.min.js' strategy="beforeInteractive" data-cf-beacon={String(`{"token": ${CLOUDFLARE_TOKEN}}`)} />
+      <Script defer data-domain="blog.tofu4956.net" src="https://internal.tofu4956.net/js/plausible.js" />
       <ThemeProvider attribute="class">
         <Component {...pageProps} />
       </ThemeProvider>
