@@ -4,7 +4,13 @@ import { DOMAIN_NAME } from "../../lib/constants";
 import Header from "../../components/header";
 import PostTitle from "../../components/post-title";
 import Head from "next/head";
-import { FaGithub, FaLink, FaSpeakerDeck, FaTwitter } from "react-icons/fa";
+import {
+  FaGithub,
+  FaKeybase,
+  FaLink,
+  FaSpeakerDeck,
+  FaTwitter,
+} from "react-icons/fa";
 import aboutPageStyles from "./about-page-styles.module.css";
 const About = (): JSX.Element => {
   return (
@@ -82,6 +88,12 @@ const About = (): JSX.Element => {
                 <a href="https://speakerdeck.com/tofu4956">
                   <FaSpeakerDeck size="16" className="my-2 mr-2" />
                   <span className="underline">Speaker Deck: tofu4956</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://keybase.io/tofu4956">
+                  <FaKeybase size="16" className="my-2 mr-2" />
+                  <span className="underline">Keybase: tofu4956</span>
                 </a>
               </li>
             </ul>
