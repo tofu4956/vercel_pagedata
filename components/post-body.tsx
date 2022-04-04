@@ -59,6 +59,8 @@ const PostBody = ({ content }: Props): JSX.Element => {
       />
       <div className="mx-auto max-w-3xl">
         <div className={markdownStyles["markdown"]}>
+          {/* // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore */}
           <MDXRemote {...content} components={MDXcomponents} />
         </div>
       </div>

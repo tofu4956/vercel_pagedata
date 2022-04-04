@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from 'next/image'
+import { DOMAIN_NAME } from "../../lib/constants";
 
 type Props = {
   "data-src": string
@@ -25,7 +26,7 @@ export const CustomCard= (props: Props) => {
   } 
 
   useEffect(() => {
-    const url = new URL("http://localhost:3000/api/card")
+    const url = new URL(`https://${DOMAIN_NAME}/api/card`)
     url.searchParams.set("url", dataSrc);
     try {
       fetch(url.toString()).then(res => res.json()).then(data => setData(data));
@@ -38,12 +39,12 @@ export const CustomCard= (props: Props) => {
     <>
       {isloaded &&
       <div className="py-2">
-        <div className="card card-side no-underline rounded-md border border-slate-400 dark:border-slate-100 bg-slate-200 dark:bg-stone-800">
+        <div className="no-underline bg-slate-200 dark:bg-stone-800 rounded-md border border-slate-400 dark:border-slate-100 card card-side">
         <figure className="max-w-[256px]">{data['image'] && <img className="w-32 md:w-64"src={(ImageHandler(data['image']))} alt="Site Image"/>}</figure>
-          <div className="card-body mx-2 text-xs">
-            <div className="text-2xl mb-auto pb-4">{data['title']}</div>
+          <div className="mx-2 text-xs card-body">
+            <div className="pb-4 mb-auto text-2xl">{data['title']}</div>
             <span className="overflow-hidden">{data['description']}</span>
-            <cite className="align-bottom text-right mt-auto mr-2 my-2 text-2xs">{dataSrc}</cite>
+            <cite className="my-2 mt-auto mr-2 text-right align-bottom text-2xs">{dataSrc}</cite>
           </div>
         </div>
       </div>
