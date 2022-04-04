@@ -7,6 +7,7 @@ import remarkMdx from "remark-mdx";
 import { serialize } from "next-mdx-remote/serialize";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
+import { rehypeCard } from "./rehype-card";
 
 type Items = {
   [key: string]: string | string[] | boolean;
@@ -23,7 +24,7 @@ export default async function markdownToHtml(markdown: Items) {
         remarkMath,
         remarkGfm,
       ],
-      rehypePlugins: [rehypeHighlight, rehypeKatex],
+      rehypePlugins: [rehypeHighlight, rehypeKatex, rehypeCard],
     },
   });
   return result;

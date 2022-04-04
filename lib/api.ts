@@ -1,6 +1,7 @@
 import fs from "fs";
 import { join } from "path";
 import matter from "gray-matter";
+import { JSDOM } from 'jsdom';
 
 const postsDirectory = join(process.cwd(), "_posts");
 
@@ -48,4 +49,23 @@ export function getAllPosts(fields: string[] = []) {
     })
     .sort((post1, post2) => (post1["date"] > post2["date"] ? -1 : 1));
   return postitems;
+}
+
+export function getOGPdata(url: string) {
+  const elemregex = /og:/;
+  type Params = {
+    [key: string]: string | null;
+  };
+  const parambuf : Params = {};  
+  const params = fetch(url).then((res) => res.text()).then(text => {
+    const jsdom = new JSDOM(text);
+    const headelem = jsdom.window.document.getElementsByTagName('meta');
+    Array.from(headelem).map(v => {
+      const property = String(v.getAttribute("property"));
+      if(!property) return;
+      parambuf[property.replace(elemregex, "")] = v.getAttribute("content");
+    })
+    return parambuf;
+  })
+  return params;
 }

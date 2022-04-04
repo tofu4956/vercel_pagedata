@@ -10,6 +10,7 @@ import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { Alert } from "./post/alert/alert";
 import { AlertWarn } from "./post/alert/alert-warn";
 import { AlertError } from "./post/alert/alert-error";
+import { CustomCard } from "./post/CustomCard";
 
 type Props = {
   content: MDXRemoteSerializeResult<Record<string, unknown>>;
@@ -42,6 +43,7 @@ const MDXcomponents = {
   Alert: (props: { children?: ReactNode }) => <Alert {...props} />,
   AlertWarn: (props: { children?: ReactNode }) => <AlertWarn {...props} />,
   AlertError: (props: { children?: ReactNode }) => <AlertError {...props} />,
+  figure: (props: {"data-src": string}) => <CustomCard {...props} />,
 };
 
 const PostBody = ({ content }: Props): JSX.Element => {

@@ -1,6 +1,11 @@
 {
   "private": true,
-  "browserslist": [">0.5%", "not ie 11", "not dead", "not op_mini all"],
+  "browserslist": [
+    ">0.5%",
+    "not ie 11",
+    "not dead",
+    "not op_mini all"
+  ],
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -12,12 +17,15 @@
     "@heroicons/react": "^1.0.4",
     "@mdx-js/loader": "^2.0.0",
     "@mdx-js/react": "^2.0.0",
+    "@next/bundle-analyzer": "^12.1.4",
     "chrome-aws-lambda": "^10.1.0",
     "classnames": "2.3.1",
     "daisyui": "^2.8.0",
     "date-fns": "2.21.3",
     "gray-matter": "4.0.3",
     "highlight.js": "^11.4.0",
+    "install": "^0.13.0",
+    "jsdom": "^19.0.0",
     "next": "^12",
     "next-mdx-remote": "^4.0.0",
     "next-themes": "^0.0.15",
@@ -41,10 +49,12 @@
     "remark-twemoji": "^0.1.1",
     "swr": "^1.2.2",
     "twemoji": "^14.0.1",
-    "typescript": "^4.2.4"
+    "typescript": "^4.2.4",
+    "unist-util-visit": "^4.1.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",
+    "@types/jsdom": "^16.2.14",
     "@types/node": "^15.6.0",
     "@types/react": "^17.0.6",
     "@types/react-dom": "^17.0.5",

@@ -44,9 +44,7 @@
   @apply text-2xl mt-8 mb-4 leading-snug;
 }
 
-.markdown a {
-  @apply underline;
-}
+
 
 .markdown pre > code {
   @apply rounded-md text-base;
@@ -60,4 +58,9 @@
 img.emoji {
   @apply w-4 h-4;
 }
+
+.markdown a {
+  @apply underline;
+}
+
 

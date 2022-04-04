@@ -7,6 +7,10 @@ html {
   border-radius: 14px;
 }
 
+a.link-card {
+  text-decoration-line: none !important;
+}
+
 cite {
   @apply text-2xs;
 }
