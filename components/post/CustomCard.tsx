@@ -26,6 +26,10 @@ export const CustomCard= (props: Props) => {
   } 
 
   useEffect(() => {
+    if(process.env.NODE_ENV !== 'production'){
+      setIsLoaded(true);
+      return;
+    }
     const url = new URL(`https://${DOMAIN_NAME}/api/card`)
     url.searchParams.set("url", dataSrc);
     try {
@@ -44,7 +48,10 @@ export const CustomCard= (props: Props) => {
           <div className="mx-2 text-xs card-body">
             <div className="pb-4 mb-auto text-2xl">{data['title']}</div>
             <span className="overflow-hidden">{data['description']}</span>
-            <cite className="my-2 mt-auto mr-2 text-right align-bottom text-2xs">{dataSrc}</cite>
+            <cite className="my-2 mt-auto mr-2 text-right align-bottom text-xs">
+              <Image src={`http://www.google.com/s2/favicons?domain=${dataSrc}`} alt="favicon" width={16} height={16}/>
+              {dataSrc}
+            </cite>
           </div>
         </div>
       </div>

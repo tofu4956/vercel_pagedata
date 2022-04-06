@@ -7,4 +7,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 module.exports = withBundleAnalyzer({
     // Prefer loading of ES Modules over CommonJS
     experimental: { esmExternals: 'loose' },
+    images: { 
+      domains: ['www.google.com'],
+    }
 })
