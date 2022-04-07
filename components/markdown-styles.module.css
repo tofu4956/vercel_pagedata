@@ -44,12 +44,20 @@
   @apply text-2xl mt-8 mb-4 leading-snug;
 }
 
+.markdown figcaption {
+  @apply flex italic text-sm ml-[6px] m-0 p-2 rounded-t-md bg-slate-100;
+}
+:global(.dark) .markdown figcaption {
+  @apply bg-slate-700;
+}
 
+.markdown pre {
+  @apply mb-6
+}
 
 .markdown pre > code {
   @apply rounded-md text-base;
 }
-
 
 .markdown section ol > li  {
   @apply list-decimal text-base;

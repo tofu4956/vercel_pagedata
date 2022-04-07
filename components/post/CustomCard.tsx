@@ -15,11 +15,11 @@ type ogDataType = {
 export const CustomCard= (props: Props) => {
   const dataSrc = props['data-src']
   
-  const [data, setData] = useState<ogDataType>({title: "null", description: "null", image: "null"});
+  const [data, setData] = useState<ogDataType>({title: "Loading", description: "Loading", image: "Loading"});
   const [isloaded ,setIsLoaded] = useState<boolean>(false);
   const ImageHandler = (src: string) => {
     if(src === "null" || src === undefined){
-      return "https://images.dog.ceo/breeds/terrier-border/n02093754_5594.jpg"
+      return ""
     }else{
       return src;
     }
