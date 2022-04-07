@@ -10,6 +10,7 @@ import remarkMath from "remark-math";
 import { rehypeCard } from "./rehype-card";
 import remarkDirective from 'remark-directive'
 import { remarkDirectiveSerializer } from "./remark-directive-serializer";
+import { rehypeCodetitle } from "./rehype-codetitle";
 
 type Items = {
   [key: string]: string | string[] | boolean;
@@ -28,7 +29,7 @@ export default async function markdownToHtml(markdown: Items) {
         remarkDirective,
         remarkDirectiveSerializer
       ],
-      rehypePlugins: [rehypeHighlight, rehypeKatex, rehypeCard],
+      rehypePlugins: [rehypeHighlight, rehypeKatex, rehypeCard, rehypeCodetitle],
     },
   });
   return result;
