@@ -41,9 +41,9 @@ https://developer.mozilla.org/ja/docs/Web/HTTP/CORS
 
 なのでどちらにせよどこかにサーバー用の関数を書かないといけません。
 
-SSGの方だとサーバーで完結するので気にする必要はない(?)のですが、先に全てのリストを作成してからgetStaticPropsで情報を抜かないとnextは動きません。あとこの方法だとビルド時のデータでサイト情報を表示するので、リンク先が削除されたりすると継続的に更新しない場合は~みんな大好き~Web魚拓っぽくなってしまいます。[^2]
+SSGの方だとサーバーで完結するので気にする必要はない(?)のですが、先に全てのリストを作成してからgetStaticPropsでページ情報を抜かないとnextは動きません。あとこの方法だとビルド時のデータでサイト情報を表示するので、リンク先のページが削除されてしまったりすると継続的に更新しない場合は~みんな大好き~Web魚拓っぽくなってしまいます。[^2]
 
-というわけでコンポーネントにしようと思いましたが、一々囲むのはちょっと面倒なので、remark-gfmのAutolink literalsを利用させて貰いました。[^2]
+というわけでコンポーネントにしようと思いましたが、一々囲むのはちょっと面倒なので、remark-gfmのAutolink literalsを利用させて貰いました。[^3]
 
 ## 実装
 
@@ -111,7 +111,6 @@ export function rehypeCard() {
               },
             ],
           };
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           //@ts-ignore
           parent.children[index] = cardschildren;
         } else {
