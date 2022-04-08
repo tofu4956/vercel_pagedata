@@ -22,7 +22,7 @@ export const CustomCard = (props: Props) => {
   });
   const [isloaded, setIsLoaded] = useState<boolean>(false);
   const ImageHandler = (src: string) => {
-    if (src === "null" || src === undefined) {
+    if (src === "Loading" || src === undefined) {
       return "";
     } else {
       return src;
