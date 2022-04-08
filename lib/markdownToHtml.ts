@@ -8,7 +8,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import { rehypeCard } from "./rehype-card";
-import remarkDirective from 'remark-directive'
+import remarkDirective from "remark-directive";
 import { remarkDirectiveSerializer } from "./remark-directive-serializer";
 import { rehypeCodetitle } from "./rehype-codetitle";
 
@@ -27,9 +27,14 @@ export default async function markdownToHtml(markdown: Items) {
         remarkMath,
         remarkGfm,
         remarkDirective,
-        remarkDirectiveSerializer
+        remarkDirectiveSerializer,
       ],
-      rehypePlugins: [rehypeHighlight, rehypeKatex, rehypeCard, rehypeCodetitle],
+      rehypePlugins: [
+        rehypeHighlight,
+        rehypeKatex,
+        rehypeCard,
+        rehypeCodetitle,
+      ],
     },
   });
   return result;

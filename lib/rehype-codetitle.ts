@@ -6,12 +6,14 @@ import { Element, Parent } from "hast";
 export function rehypeCodetitle() {
   return (tree: Node) => {
     visit(tree, "element", (node: Element, parent: Parent) => {
-      if (
-        node.tagName === "p"
-      ) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        //@ts-ignore
-        if (node.children[0].tagName === "figcaption" && node.children[0].children) {
+      if (node.tagName === "p") {
+        
+        if (
+          //@ts-ignore
+          node.children[0].tagName === "figcaption" &&
+          //@ts-ignore
+          node.children[0].children
+        ) {
           const CodeTitleElement = {
             type: "element",
             tagName: "figcaption",
@@ -20,14 +22,14 @@ export function rehypeCodetitle() {
               {
                 type: "text",
                 //@ts-ignore
-                value: node.children[0].children[0].value
+                value: node.children[0].children[0].value,
               },
             ],
-          }
-          node.type = "element"
-          node.tagName = "div"
+          };
+          node.type = "element";
+          node.tagName = "div";
           node.properties = {
-            className: "flex"
+            className: "flex",
           };
           //@ts-ignore
           node.children = [CodeTitleElement];

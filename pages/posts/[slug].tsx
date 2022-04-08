@@ -28,13 +28,12 @@ const Post = ({ post, preview, MDXContent }: Props) => {
     return <ErrorPage statusCode={404} />;
   }
   const ogHandler = (post: PostType) => {
-    if (post.ogImage === "null"){
-      const url = new URL(`https://${DOMAIN_NAME}/api/ogp`)
+    if (post.ogImage === "null") {
+      const url = new URL(`https://${DOMAIN_NAME}/api/ogp`);
       url.searchParams.set("title", post.title);
       url.searchParams.set("excerpt", post.excerpt);
       return url.toString();
-    }
-    else return post.ogImage;
+    } else return post.ogImage;
   };
   return (
     <Layout preview={preview}>

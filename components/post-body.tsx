@@ -43,7 +43,7 @@ const MDXcomponents = {
   Alert: (props: { children?: ReactNode }) => <Alert {...props} />,
   AlertWarn: (props: { children?: ReactNode }) => <AlertWarn {...props} />,
   AlertError: (props: { children?: ReactNode }) => <AlertError {...props} />,
-  figure: (props: {"data-src": string}) => <CustomCard {...props} />,
+  figure: (props: { "data-src": string }) => <CustomCard {...props} />,
 };
 
 const PostBody = ({ content }: Props): JSX.Element => {

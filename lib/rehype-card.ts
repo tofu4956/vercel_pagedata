@@ -14,9 +14,13 @@ export function rehypeCard() {
         node.children[0].children[0] &&
         typeof index === "number"
       ) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
-        if (node.children[0].properties["href"] === node.children[0].children[0].value) {
+        if (
+        //@ts-ignore
+          node.children[0].properties["href"] ===
+        //@ts-ignore
+          node.children[0].children[0].value
+        ) {
           const cardschildren = {
             type: "element",
             tagName: "a",
@@ -43,7 +47,6 @@ export function rehypeCard() {
               },
             ],
           };
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           //@ts-ignore
           parent.children[index] = cardschildren;
         } else {

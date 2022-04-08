@@ -13,10 +13,6 @@ export const CodePen = ({ id }: Props) => {
       frameBorder="no"
       loading="lazy"
       allowFullScreen={true}
-    >
-      See the Pen <a href={`https://codepen.io/tofu4956/pen/${id}`}>Untitled</a>{" "}
-      by tofu4956 (<a href="https://codepen.io/tofu4956">@tofu4956</a>) on{" "}
-      <a href="https://codepen.io">CodePen</a>.
-    </iframe>
+    ></iframe>
   );
 };
