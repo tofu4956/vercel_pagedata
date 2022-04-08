@@ -1,0 +1,263 @@
+---
+title: '無理矢理ブログカードを作る'
+date: '2022-04-08T22:09:48'
+excerpt: 'Next.js(Serverless Function) + MDX + rehype (+ remark-gfm)で強引にブログカードを生成するだけ'
+coverImage: 'null'
+ogImage: 'null'
+category: 技術
+tags: []
+private: false
+---
+
+なんか動いてるからヨシ！(よくない)
+
+# Table of content
+
+# おことわり
+
+<AlertWarn>rehypeプラグイン部のコードはゴリ押ししすぎてクソコード気味の為、あまり参考にするのはお勧めしません。また、一部HTMLタグが利用できなくなります。</AlertWarn>
+
+# モチベ
+
+OGPの作り方はよく見るけどカードっぽく見せるリンクの作り方はあんまり見ないよねということで、自分のブログだし欲し～ぐらいの気持ちでやったら割と苦労しました。
+
+ちなみに完成品はこれ。↓
+
+https://developer.mozilla.org/ja/
+
+# 作る
+
+## 下調べ
+
+まず真っ先に思い浮かんだのはzennのリンクカードでしたが、[zennのリンクカードはどうもiframeで実現しているようでした](https://zenn.dev/catnose99/scraps/381b3750099f49)[^1]。iframeでも良さそうに見えますが、iframeだとダークモードの切り替え時に背景が切り替わらないので、今回はやめました(?)
+
+そうなると
+- コンポーネントにするか
+- SSGにするか
+
+の2択しかないですが、まずCORSがあるのでクライアントだと完結しません。
+
+https://developer.mozilla.org/ja/docs/Web/HTTP/CORS
+
+なのでどちらにせよどこかにサーバー用の関数を書かないといけません。
+
+SSGの方だとサーバーで完結するので気にする必要はない(?)のですが、先に全てのリストを作成してからgetStaticPropsで情報を抜かないとnextは動きません。あとこの方法だとビルド時のデータでサイト情報を表示するので、リンク先が削除されたりすると継続的に更新しない場合は~みんな大好き~Web魚拓っぽくなってしまいます。[^2]
+
+というわけでコンポーネントにしようと思いましたが、一々囲むのはちょっと面倒なので、remark-gfmのAutolink literalsを利用させて貰いました。[^2]
+
+## 実装
+
+最終的に
+```html
+...
+<p>
+  <a href="https://example.com">https://example.com</a>
+</p>
+...
+```
+を
+```html
+<a class="link-card" >
+  <figure data-src="https://example.com">https://example.com</figure>
+</a>
+```
+に変更して、`<figure>`をmdxで別のコンポーネントに割り当てることで実装しました。スタイリングの為に一部[daisyui](https://daisyui.com)を使用。
+
+## コード
+
+:figcaption[rehype-card.ts]
+```ts
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { visit } from "unist-util-visit";
+import { Node } from "unist";
+import { Element, Parent } from "hast";
+
+export function rehypeCard() {
+  return (tree: Node) => {
+    visit(tree, "element", (node: Element, index, parent: Parent) => {
+      if (
+        ["p"].includes(node.tagName) &&
+        //@ts-ignore
+        node.children[0].properties &&
+        //@ts-ignore
+        node.children[0].children[0] &&
+        typeof index === "number"
+      ) {
+        //@ts-ignore
+        if (node.children[0].properties["href"] === node.children[0].children[0].value) {
+          const cardschildren = {
+            type: "element",
+            tagName: "a",
+            properties: {
+              className: ["link-card"],
+              //@ts-ignore
+              href: node.children[0].properties["href"],
+            },
+            children: [
+              {
+                type: "element",
+                tagName: "figure",
+                properties: {
+                  //@ts-ignore
+                  dataSrc: node.children[0].properties["href"],
+                },
+                children: [
+                  {
+                    type: "text",
+                    //@ts-ignore
+                    value: node.children[0].children[0].value,
+                  },
+                ],
+              },
+            ],
+          };
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          //@ts-ignore
+          parent.children[index] = cardschildren;
+        } else {
+          return;
+        }
+      } else {
+        return;
+      }
+    });
+  };
+}
+```
+
+:figcaption[/api/card.ts]
+```ts
+import { NextApiRequest, NextApiResponse } from "next";
+import { getOGPdata } from "../../lib/api";
+
+const CardOGP = async (req: NextApiRequest, res: NextApiResponse) => {
+  const url: string | string[] | undefined = req.query["url"]
+  res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=1209600, max-age=1209600"
+  );
+  res.status(200).json(await getOGPdata(String(url)));
+}
+
+export default CardOGP;
+```
+
+:figcaption[api.ts]
+```ts
+export function getOGPdata(url: string) {
+  const elemregex = /og:/;
+  type Params = {
+    [key: string]: string | null;
+  };
+  const parambuf : Params = {};  
+  const params = fetch(url).then((res) => res.text()).then(text => {
+    const jsdom = new JSDOM(text);
+    const headelem = jsdom.window.document.getElementsByTagName('meta');
+    Array.from(headelem).map(v => {
+      const property = String(v.getAttribute("property"));
+      if(!property) return;
+      parambuf[property.replace(elemregex, "")] = v.getAttribute("content");
+    })
+    return parambuf;
+  })
+  return params;
+}
+```
+
+:figcaption[CustomCard.tsx]
+```tsx
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { DOMAIN_NAME } from "../../lib/constants";
+
+type Props = {
+  "data-src": string;
+};
+
+type ogDataType = {
+  title: string;
+  description: string;
+  image: string;
+};
+
+export const CustomCard = (props: Props) => {
+  const dataSrc = props["data-src"];
+
+  const [data, setData] = useState<ogDataType>({
+    title: "Loading",
+    description: "Loading",
+    image: "Loading",
+  });
+  const [isloaded, setIsLoaded] = useState<boolean>(false);
+  const ImageHandler = (src: string) => {
+    if (src === "Loading" || src === undefined) {
+      return "";
+    } else {
+      return src;
+    }
+  };
+
+  useEffect(() => {
+    if (process.env.NODE_ENV !== "production") {
+      const url = new URL(`http://localhost:3000/api/card`);
+      url.searchParams.set("url", dataSrc);
+      fetch(url.toString())
+        .then((res) => res.json())
+        .then((data) => setData(data));
+      setIsLoaded(true);
+      return;
+    }
+    const url = new URL(`https://${DOMAIN_NAME}/api/card`);
+    url.searchParams.set("url", dataSrc);
+    try {
+      fetch(url.toString())
+        .then((res) => res.json())
+        .then((data) => setData(data));
+      setIsLoaded(true);
+    } catch {
+      throw new Error("Failed to Fetch");
+    }
+  }, [dataSrc]);
+  return (
+    <>
+      {isloaded && (
+        <div className="py-2">
+          <div className="no-underline bg-slate-200 dark:bg-stone-800 rounded-md border border-slate-400 dark:border-slate-100 card card-side">
+            <figure className="max-w-[256px]">
+              {data["image"] && (
+                <img
+                  className="w-32 md:w-64"
+                  src={ImageHandler(data["image"])}
+                  alt="Site Image"
+                />
+              )}
+            </figure>
+            <div className="mx-2 text-xs card-body">
+              <div className="pb-4 mb-auto text-2xl">{data["title"]}</div>
+              <span className="overflow-hidden">{data["description"]}</span>
+              <cite className="my-2 mt-auto mr-2 text-xs text-right align-bottom">
+                <Image
+                  src={`http://www.google.com/s2/favicons?domain=${dataSrc}`}
+                  alt="favicon"
+                  width={16}
+                  height={16}
+                />
+                {dataSrc}
+              </cite>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+```
+
+もうちょっと良い書き方ありそう(特にrehype側)
+
+~まあでも普通は[iframely](https://iframely.com/)を使えばいいと思います。~
+
+
+[^1]: ちなみに[zenn-markdown-html](https://github.com/zenn-dev/zenn-editor/tree/main/packages/zenn-markdown-html)の中身を見たら、リンクカード部をほぼ全て別urlで引き受けていたので、[こういう記事](https://zenn.dev/waddy/articles/intro-zenn-markdown)もある関係上、負荷大丈夫かなって思いました(貧乏なので...)
+[^2]: 後で思ったけどISRを使えば解決しそうではある
+[^3]: gfmのAutolink、日本語入りだとなんかバグるんですよね...(スペース入れないとくっつく)
